@@ -21,6 +21,8 @@ public class Dungeon {
     private List<Entity> entities;
     private Player player;
 
+    private DungeonDisplay dungeonDisplay;
+
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
@@ -42,10 +44,29 @@ public class Dungeon {
 
     public void setPlayer(Player player) {
         this.player = player;
+        this.dungeonDisplay = new DungeonDisplay(this, player);
     }
 
     public void addEntity(Entity entity) {
-        entities.add(entity);
+        if (entity != null) {
+            if (!entity.getType().equals("Player")) {
+                entity.addObserver(dungeonDisplay);
+            }
+            entities.add(entity);
+        }
+    }
+
+    public boolean validMove(Entity player, int x, int y) {
+        for (Entity temp : this.entities) {
+            if (temp != null) {
+                if (temp.getX() == x && temp.getY() == y) {
+                    if (temp.getType().equals("Wall")) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public boolean validMove(Entity player, int x, int y) {

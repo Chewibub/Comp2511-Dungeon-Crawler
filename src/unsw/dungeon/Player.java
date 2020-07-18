@@ -1,5 +1,8 @@
 package unsw.dungeon;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  * The player entity
  * @author Robert Clifton-Everest
@@ -8,6 +11,7 @@ package unsw.dungeon;
 public class Player extends Entity {
 
     private Dungeon dungeon;
+    private StringProperty direction;
 
     /**
      * Create a player positioned in square (x,y)
@@ -27,6 +31,8 @@ public class Player extends Entity {
         } else if (getY() > 0) {
             y().set(newY);
         }
+        direction = new SimpleStringProperty("Up");
+        pingObservers();
     }
 
     public void moveDown() {
@@ -37,6 +43,8 @@ public class Player extends Entity {
         } else if (getY() < dungeon.getHeight() - 1) {
             y().set(newY);
         }
+        direction = new SimpleStringProperty("Down");
+        pingObservers();
     }
 
     public void moveLeft() {
@@ -46,7 +54,9 @@ public class Player extends Entity {
             return;
         } else if (getX() > 0) {
             x().set(newX);
-        }            
+        }
+        direction = new SimpleStringProperty("Left");            
+        pingObservers();
     }
 
     public void moveRight() {
@@ -57,5 +67,7 @@ public class Player extends Entity {
         } else if (getX() < dungeon.getWidth() - 1) {
             x().set(newX);
         }
+        direction = new SimpleStringProperty("Right");
+        pingObservers();
     }
 }

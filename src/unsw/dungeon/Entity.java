@@ -5,17 +5,22 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 /**
  * An entity in the dungeon.
  * @author Robert Clifton-Everest
  *
  */
-public class Entity {
+public class Entity implements EntitySubject{
 
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
     private IntegerProperty x, y;
     private StringProperty type;
+
+    private StringProperty type;
+    private CopyOnWriteArrayList<DungeonObserver> observers;
 
     /**
      * Create an entity positioned in square (x,y)
@@ -25,9 +30,8 @@ public class Entity {
     public Entity(int x, int y, String type) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
-        this.type = new SimpleStringProperty(type);{
-            
-        };
+        this.type = new SimpleStringProperty(type);
+        this.observers = new CopyOnWriteArrayList<DungeonObserver>();
     }
 
     public IntegerProperty x() {
@@ -52,5 +56,34 @@ public class Entity {
 
     public int getX() {
         return x().get();
+    }
+
+    @Override
+    public void addObserver(DungeonObserver o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(DungeonObserver o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void pingObservers() {
+        for (DungeonObserver o : observers) {
+            o.update();
+        }
+    }
+
+    public boolean collides(Player player) {
+        if (player.getX() == this.getX() && player.getY() == this.getY()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void smash() {
+        return;
     }
 }
