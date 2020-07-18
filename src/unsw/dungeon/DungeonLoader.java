@@ -61,6 +61,7 @@ public abstract class DungeonLoader {
             entity = wall;
             break;
         // TODO Handle other possible entities
+
         }
         dungeon.addEntity(entity);
     }

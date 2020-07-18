@@ -47,4 +47,17 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
+
+    public boolean validMove(Entity player, int x, int y) {
+        for (Entity temp : this.entities) {
+            if (temp != null) {
+                if (temp.getX() == x && temp.getY() == y) {
+                    if (temp.getType().equals("Wall")) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }
