@@ -74,7 +74,10 @@ public class Entity implements EntitySubject{
         }
     }
 
-    public boolean collides(Player player) {
+    public boolean collides(Entity player) {
+        if (this.getType().equals("Player")) {
+            return false;
+        }
         if (player.getX() == this.getX() && player.getY() == this.getY()) {
             return true;
         } else {
@@ -83,6 +86,5 @@ public class Entity implements EntitySubject{
     }
 
     public void smash() {
-        return;
     }
 }
