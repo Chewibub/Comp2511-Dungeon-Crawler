@@ -30,48 +30,40 @@ public class Player extends Entity {
     public void moveUp() {
         int newY = getY() - 1;
         int newX = getX();
-        if (!dungeon.validMove(this, newX, newY)) {
-            return;
-        } else if (getY() > 0) {
+        if (dungeon.validMove(this, newX, newY)) {
             y().set(newY);
+            direction = new SimpleStringProperty("Up");
+            pingObservers();
         }
-        direction = new SimpleStringProperty("Up");
-        pingObservers();
     }
 
     public void moveDown() {
         int newY = getY() + 1;
         int newX = getX();
-        if (!dungeon.validMove(this, newX, newY)) {
-            return;
-        } else if (getY() < dungeon.getHeight() - 1) {
+        if (dungeon.validMove(this, newX, newY)) {
             y().set(newY);
+            direction = new SimpleStringProperty("Down");
+            pingObservers();
         }
-        direction = new SimpleStringProperty("Down");
-        pingObservers();
     }
 
     public void moveLeft() {
         int newY = getY();
         int newX = getX() - 1;
-        if (!dungeon.validMove(this, newX, newY)) {
-            return;
-        } else if (getX() > 0) {
+        if (dungeon.validMove(this, newX, newY)) {
             x().set(newX);
-        }
-        direction = new SimpleStringProperty("Left");            
-        pingObservers();
+            direction = new SimpleStringProperty("Left");            
+            pingObservers();
+        }         
     }
 
     public void moveRight() {
         int newY = getY();
         int newX = getX() + 1;
-        if (!dungeon.validMove(this, newX, newY)) {
-            return;
-        } else if (getX() < dungeon.getWidth() - 1) {
+        if (dungeon.validMove(this, newX, newY)) {
             x().set(newX);
+            direction = new SimpleStringProperty("Right");
+            pingObservers();
         }
-        direction = new SimpleStringProperty("Right");
-        pingObservers();
     }
 }
