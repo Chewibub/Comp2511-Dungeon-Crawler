@@ -60,19 +60,33 @@ public abstract class DungeonLoader {
             onLoad(wall);
             entity = wall;
             break;
-        // TODO Handle other possible entities
         case "exit":
             Exit exit = new Exit(dungeon, x, y);
             onLoad(exit);
             entity = exit;
             break;
+
         case "sword":
-            Sword sword = new Sword(x, y);
+            Sword sword = new Sword(dungeon, x, y);
             onLoad(sword);
             entity = sword;
             break;
-        }
 
+        case "enemy":
+            Enemy enemy = new Enemy(dungeon, x, y);
+            onLoad(enemy);
+            entity = enemy;
+            break;
+            
+        case "potion":
+            Potion potion = new Potion(dungeon, x, y);
+            onLoad(potion);
+            entity = potion;
+            break;
+        }
+        
+        
+        // TODO Handle other possible entities
 
         dungeon.addEntity(entity);
     }
@@ -81,8 +95,11 @@ public abstract class DungeonLoader {
 
     public abstract void onLoad(Wall wall);
 
-    // TODO Create additional abstract methods for the other entities
     public abstract void onLoad(Exit exit);
     
     public abstract void onLoad(Sword sword);
+    public abstract void onLoad(Enemy enemy);
+    public abstract void onLoad(Potion potion);
+
+    // TODO Create additional abstract methods for the other entities
 }
