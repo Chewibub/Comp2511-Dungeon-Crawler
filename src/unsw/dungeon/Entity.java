@@ -88,4 +88,5 @@ public class Entity implements EntitySubject{
 
     public void smash() {
     }
+
 }

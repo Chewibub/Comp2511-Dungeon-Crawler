@@ -39,7 +39,50 @@ public abstract class DungeonLoader {
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
+
+        JSONObject jsonGoals = json.getJSONObject("goal-condition");
+        loadGoals(dungeon, jsonGoals, "ONE");
+        dungeon.printGoals();
+
         return dungeon;
+    }
+
+    private void loadGoals(Dungeon dungeon, JSONObject json, String type) {
+        String goalType = json.getString("goal");
+        if (goalType.equals("AND")) {
+            type = "AND";
+
+            JSONArray goals = json.getJSONArray("subgoals");
+            for (int i = 0; i < goals.length(); i++) {
+                loadGoals(dungeon, goals.getJSONObject(i), type);
+            }
+        } else if (goalType.equals("OR")) {
+            type = "OR";
+            JSONArray goals = json.getJSONArray("subgoals");
+            for (int i = 0; i < goals.length(); i++) {
+                loadGoals(dungeon, goals.getJSONObject(i), type);
+            }         
+        } else {
+            Goal temp;
+            switch (goalType) {
+            case "exit":
+                temp = new Goal("exit", type);
+                dungeon.addGoal(temp);
+                break;
+            case "boulder":
+                temp = new Goal("boulder", type);
+                dungeon.addGoal(temp);
+                break;
+            case "enemies":
+                temp = new Goal("enemies", type);
+                dungeon.addGoal(temp);
+                break;
+            case "treasure":
+                temp = new Goal("treasure", type);
+                dungeon.addGoal(temp);
+                break;                 
+            }
+        }
     }
 
     private void loadEntity(Dungeon dungeon, JSONObject json) {
