@@ -1,22 +1,32 @@
 package unsw.dungeon;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class DungeonDisplay implements DungeonObserver {
     Dungeon dungeon;
-    Entity entity;
+    Player player;
 
-    public DungeonDisplay (Dungeon dungeon, Entity entity) {
+    public DungeonDisplay (Dungeon dungeon, Player player) {
         this.dungeon = dungeon;
-        this.entity = entity;
-        this.entity.addObserver(this);
+        this.player = player;
+        this.player.addObserver(this);
     }
 
+    @Override
     public void update() {
-        Player player;
-        player = dungeon.getPlayer();
-        if (entity.collides(player) == true) {
-            entity.smash();
+        List<Entity> entities = dungeon.getEntities();
+        for (Entity temp : entities) {
+            if (temp != null) {
+                if (temp.collides(player) == true) {
+                    temp.smash();
+                }
+            }
         }
+
+    }
+
+    @Override
+    public Entity getEntity() {
+        return entity;
     }
 }

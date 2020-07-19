@@ -47,6 +47,10 @@ public class Dungeon {
         this.dungeonDisplay = new DungeonDisplay(this, player);
     }
 
+    public List<Entity> getEntities() {
+        return entities;
+    }
+
     public void addEntity(Entity entity) {
         if (entity != null) {
             if (!entity.getType().equals("Player")) {

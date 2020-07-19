@@ -23,6 +23,10 @@ public class Player extends Entity {
         this.dungeon = dungeon;
     }
 
+    public String getDirection() {
+        return direction.get();
+    }
+
     public void moveUp() {
         int newY = getY() - 1;
         int newX = getX();
