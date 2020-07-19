@@ -66,7 +66,14 @@ public abstract class DungeonLoader {
             onLoad(exit);
             entity = exit;
             break;
+        case "sword":
+            Sword sword = new Sword(x, y);
+            onLoad(sword);
+            entity = sword;
+            break;
         }
+
+
         dungeon.addEntity(entity);
     }
 
@@ -76,5 +83,6 @@ public abstract class DungeonLoader {
 
     // TODO Create additional abstract methods for the other entities
     public abstract void onLoad(Exit exit);
-
+    
+    public abstract void onLoad(Sword sword);
 }
