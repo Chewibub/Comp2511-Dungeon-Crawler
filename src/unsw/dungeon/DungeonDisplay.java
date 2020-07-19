@@ -25,8 +25,8 @@ public class DungeonDisplay implements DungeonObserver {
 
     }
 
-    @Override
-    public Entity getEntity() {
-        return entity;
-    }
+    // @Override
+    // public Entity getEntity() {
+    //     return entity;
+    // }
 }
