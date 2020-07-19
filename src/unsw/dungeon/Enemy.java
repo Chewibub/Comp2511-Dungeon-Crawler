@@ -34,8 +34,10 @@ public class Enemy extends Entity {
             x().set(newX);
         } else {
             direction = d * -1;
-            return;
-        }
-            
+        } 
+    }
+    
+    public void smash() {
+        System.out.println("You have died!");
     }
 }
