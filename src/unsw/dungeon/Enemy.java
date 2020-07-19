@@ -1,5 +1,6 @@
 package unsw.dungeon;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -39,5 +40,6 @@ public class Enemy extends Entity {
     
     public void smash() {
         System.out.println("You have died!");
+        Platform.exit();
     }
 }
