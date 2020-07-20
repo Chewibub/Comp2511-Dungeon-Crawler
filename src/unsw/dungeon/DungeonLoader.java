@@ -153,6 +153,12 @@ public abstract class DungeonLoader {
             onLoad(key);
             entity = key;
             break;
+        case "portal":
+            int portalID = json.getInt("id");
+            Portal portal = new Portal(dungeon, x, y, portalID);
+            onLoad(portal);
+            entity = portal;
+            break;
         }
 
         // TODO Handle other possible entities
@@ -177,4 +183,6 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Treasure treasure);
 
     public abstract void onLoad(Door door);
+    public abstract void onLoad(Portal portal);
+
 }
