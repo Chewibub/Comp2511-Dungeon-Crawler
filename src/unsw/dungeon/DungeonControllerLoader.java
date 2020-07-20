@@ -27,6 +27,9 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image playerImage;
     private Image wallImage;
     private Image exitImage;
+    private Image swordImage;
+    private Image enemyImage;
+    private Image potionImage;
     private Image boulderImage;
     private Image switchImage;
 
@@ -37,6 +40,9 @@ public class DungeonControllerLoader extends DungeonLoader {
         playerImage = new Image((new File("images/human_new.png")).toURI().toString());
         wallImage = new Image((new File("images/brick_brown_0.png")).toURI().toString());
         exitImage = new Image((new File("images/exit.png")).toURI().toString());
+        swordImage = new Image((new File("images/greatsword_1_new.png")).toURI().toString());
+        enemyImage = new Image((new File("images/hound.png")).toURI().toString());
+        potionImage = new Image((new File("images/brilliant_blue_new.png")).toURI().toString());
         boulderImage = new Image((new File("images/boulder.png")).toURI().toString());
         switchImage = new Image((new File("images/pressure_plate.png")).toURI().toString());
     }
@@ -54,12 +60,28 @@ public class DungeonControllerLoader extends DungeonLoader {
     }
 
     @Override
+    public void onLoad(Enemy enemy) {
+        ImageView view = new ImageView(enemyImage);
+        addEntity(enemy, view);
+    }
+    
+    @Override
     public void onLoad(Exit exit) {
         ImageView view = new ImageView(exitImage);
         addEntity(exit, view);
     }
 
     @Override
+    public void onLoad(Sword sword) {
+        ImageView view = new ImageView(swordImage);
+        addEntity(sword, view);
+    }
+
+    @Override
+    public void onLoad(Potion potion) {
+        ImageView view = new ImageView(potionImage);
+        addEntity(potion, view);
+
     public void onLoad(Boulder boulder) {
         ImageView view = new ImageView(boulderImage);
         addEntity(boulder, view);

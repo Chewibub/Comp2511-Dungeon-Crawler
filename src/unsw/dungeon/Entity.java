@@ -17,7 +17,6 @@ public class Entity implements EntitySubject{
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
     private IntegerProperty x, y;
-    private StringProperty type;
 
     private CopyOnWriteArrayList<DungeonObserver> observers;
 

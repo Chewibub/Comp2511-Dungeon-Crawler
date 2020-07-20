@@ -48,21 +48,38 @@ public class DungeonController {
             squares.getChildren().add(entity);
 
     }
+    
+    public void moveEnemies() {
+        for (Entity e : dungeon.getEntities()) {
+            if (e.getType() == "Enemy") {
+                Enemy enemy = (Enemy) e;
+                enemy.triggerMovement();
+            }
+        }
+    }
 
     @FXML
     public void handleKeyPress(KeyEvent event) {
         switch (event.getCode()) {
         case UP:
             player.moveUp();
+            moveEnemies();
+            player.pingObservers();
             break;
         case DOWN:
             player.moveDown();
+            moveEnemies();
+            player.pingObservers();
             break;
         case LEFT:
             player.moveLeft();
+            moveEnemies();
+            player.pingObservers();
             break;
         case RIGHT:
             player.moveRight();
+            moveEnemies();
+            player.pingObservers();
             break;
         default:
             break;

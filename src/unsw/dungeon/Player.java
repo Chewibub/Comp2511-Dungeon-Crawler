@@ -12,6 +12,8 @@ public class Player extends Entity {
 
     private Dungeon dungeon;
     private StringProperty direction;
+    private int swordCharges;
+    private boolean invincible;
 
     /**
      * Create a player positioned in square (x,y)
@@ -21,6 +23,24 @@ public class Player extends Entity {
     public Player(Dungeon dungeon, int x, int y) {
         super(x, y, "Player");
         this.dungeon = dungeon;
+        swordCharges = 0;
+        invincible = false;
+    }
+
+    public int getSwordCharges() {
+        return swordCharges;
+    }
+
+    public void setSwordCharges(int charges) {
+        swordCharges = charges;
+    }
+
+    public boolean getInvincibility() {
+        return invincible;
+    }
+
+    public void setInvincibility(boolean status) {
+        invincible = status;
     }
 
     public String getDirection() {

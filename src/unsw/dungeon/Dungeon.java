@@ -55,6 +55,17 @@ public class Dungeon {
         return this.entities;
     }
 
+    public void removeEntity(Entity delEntity) {
+        List<Entity> newEntities = new ArrayList<>();
+
+        for (Entity e : entities) {
+            if (e != delEntity) {
+                newEntities.add(e);
+            }
+        }
+        entities = newEntities;
+    }
+    
     public void addEntity(Entity entity) {
         if (entity != null) {
             if (!entity.getType().equals("Player")) {
