@@ -107,5 +107,15 @@ public class Entity implements EntitySubject{
     public void setY(int value) {
     	y().set(value);
     }
+
+    public boolean onTop(Entity entity) {
+        if (entity.getX() == this.getX() && entity.getY() == this.getY()) {
+            return true;
+        }
+        return false;
+    }
+
+    public void update() {
+    }
     
 }
