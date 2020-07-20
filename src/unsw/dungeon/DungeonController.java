@@ -1,8 +1,5 @@
 package unsw.dungeon;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +7,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -48,38 +47,21 @@ public class DungeonController {
             squares.getChildren().add(entity);
 
     }
-    
-    public void moveEnemies() {
-        for (Entity e : dungeon.getEntities()) {
-            if (e.getType() == "Enemy") {
-                Enemy enemy = (Enemy) e;
-                enemy.triggerMovement();
-            }
-        }
-    }
 
     @FXML
     public void handleKeyPress(KeyEvent event) {
         switch (event.getCode()) {
         case UP:
             player.moveUp();
-            moveEnemies();
-            player.pingObservers();
             break;
         case DOWN:
             player.moveDown();
-            moveEnemies();
-            player.pingObservers();
             break;
         case LEFT:
             player.moveLeft();
-            moveEnemies();
-            player.pingObservers();
             break;
         case RIGHT:
             player.moveRight();
-            moveEnemies();
-            player.pingObservers();
             break;
         default:
             break;
