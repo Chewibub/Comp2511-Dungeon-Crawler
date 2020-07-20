@@ -125,6 +125,7 @@ public abstract class DungeonLoader {
             Potion potion = new Potion(dungeon, x, y);
             onLoad(potion);
             entity = potion;
+            break;
             
         case "boulder":
             Boulder boulder = new Boulder(dungeon, x, y);
@@ -175,14 +176,13 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Enemy enemy);
     public abstract void onLoad(Potion potion);
 
-    // TODO Create additional abstract methods for the other entities
     public abstract void onLoad(Boulder boulder);
-
+    
     public abstract void onLoad(Switch s);
-
+    
     public abstract void onLoad(Treasure treasure);
-
+    
     public abstract void onLoad(Door door);
     public abstract void onLoad(Portal portal);
-
+    
 }
