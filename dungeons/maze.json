@@ -5,7 +5,7 @@
     {
       "x": 3,
       "y": 3,
-      "type": "boulder"
+      "type": "treasure"
     },
     {
       "x": 3,
@@ -24,6 +24,6 @@
     }
   ],
   "goal-condition": {
-    "goal": "boulders"
+    "goal": "treasure"
   }
 }

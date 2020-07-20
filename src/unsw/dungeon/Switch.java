@@ -26,10 +26,12 @@ public class Switch extends Entity {
                 if (temp.getType().equals("Boulder")) {
                     if (temp.onTop(this)) {
                         this.setState(State.ON);
+                        return;
                     }
                 }
             }
         }
+        this.setState(State.OFF);
     }
 
     @Override
