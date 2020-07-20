@@ -125,6 +125,7 @@ public abstract class DungeonLoader {
             Potion potion = new Potion(dungeon, x, y);
             onLoad(potion);
             entity = potion;
+            break;
             
         case "boulder":
             Boulder boulder = new Boulder(dungeon, x, y);
