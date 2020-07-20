@@ -67,6 +67,12 @@ public class Entity implements EntitySubject{
         observers.remove(o);
     }
 
+    protected void removeAllObservers() {
+        while (observers.size() > 0) {
+            observers.remove(0);
+        }
+    }
+
     @Override
     public void pingObservers() {
         for (DungeonObserver o : observers) {
