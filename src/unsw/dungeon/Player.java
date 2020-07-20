@@ -14,10 +14,7 @@ public class Player extends Entity {
     private StringProperty direction;
     private int swordCharges;
     private boolean invincible;
-    private Key key;
-
-    private int keyInventory = 0;
-
+    private boolean fail = false;
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -68,6 +65,7 @@ public class Player extends Entity {
             y().set(newY);
             pingObservers();
         }
+
     }
 
     public void moveLeft() {
@@ -77,7 +75,7 @@ public class Player extends Entity {
         if (dungeon.validMove(this, newX, newY)) {
             x().set(newX);           
             pingObservers();
-        }         
+        }
     }
 
     public void moveRight() {
@@ -89,22 +87,14 @@ public class Player extends Entity {
             direction = new SimpleStringProperty("Right");
             pingObservers();
         }
+
     }
 
-    public void setKey(Key key) {
-        this.key = key;
-        this.keyInventory = 1;
+    public void fail() {
+        fail = true;
+        removeAllObservers();
     }
-
-    public Key getKey() {
-        return this.key;
-    }
-    public void delKey() {
-        this.keyInventory = 0;
-        dungeon.removeEntity(this.key);
-    }
-
-    public int getKeyInventory() {
-        return this.keyInventory;
+    public boolean failed(){
+        return fail;
     }
 }
