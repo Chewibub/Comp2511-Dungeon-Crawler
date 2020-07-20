@@ -15,7 +15,7 @@ public class ExitTest {
 
     @Before
     public void setup() throws FileNotFoundException {
-        dungeon = TestUtil.load("dungeons/test-exit.json");
+        dungeon = TestUtil.load("/tmp_amd/cage/export/cage/4/z5167295/H17B-CD/dungeons/test-exit.json");
 
     }
     @Test
