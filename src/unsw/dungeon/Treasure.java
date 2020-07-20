@@ -20,6 +20,7 @@ public class Treasure extends Entity {
 
     @Override
     public void smash() {
+        System.out.println("Looted Treasure!");
         this.looted = State.ON;
         dungeon.removeEntity(this);
     }
