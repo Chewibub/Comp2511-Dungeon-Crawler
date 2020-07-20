@@ -82,6 +82,9 @@ public class DungeonControllerLoader extends DungeonLoader {
         ImageView view = new ImageView(potionImage);
         addEntity(potion, view);
 
+    }
+
+    @Override
     public void onLoad(Boulder boulder) {
         ImageView view = new ImageView(boulderImage);
         addEntity(boulder, view);

@@ -56,7 +56,7 @@ public class Dungeon {
     }
 
     public void removeEntity(Entity delEntity) {
-        List<Entity> newEntities = new ArrayList<>();
+        CopyOnWriteArrayList<Entity> newEntities = new CopyOnWriteArrayList<>();
 
         for (Entity e : entities) {
             if (e != delEntity) {
@@ -77,7 +77,6 @@ public class Dungeon {
 
     public boolean validMove(Entity player, int x, int y) {
         if (x > getWidth() - 1 || y > getHeight() - 1 || x < 0 || y < 0) {
-            System.out.println("Out of bounds");
             return false;
         }
         for (Entity temp : this.entities) {

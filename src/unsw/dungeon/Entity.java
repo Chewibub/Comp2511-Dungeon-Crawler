@@ -17,7 +17,7 @@ public class Entity implements EntitySubject{
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
     private IntegerProperty x, y;
-
+    private StringProperty type;
     private CopyOnWriteArrayList<DungeonObserver> observers;
 
     /**
@@ -25,6 +25,7 @@ public class Entity implements EntitySubject{
      * @param x
      * @param y
      */
+    
     public Entity(int x, int y, String type) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
