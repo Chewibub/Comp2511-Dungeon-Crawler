@@ -22,10 +22,20 @@ public class DungeonDisplay implements DungeonObserver {
                 }
             }
         }
+        List<Goal> goals = dungeon.getGoals();
+        for (Goal temp : goals) {
+            if (temp != null) {
+                temp.updateGoal();
+                if (temp.checkCompleted() == true && temp.getCondition().equals("ONE")) {
+                    System.out.println("You won!!");
+                }
+            }
+        }
+
     }
 
-    // @Override
-    // public Entity getEntity() {
-    //     return Entity;
-    // }
+    @Override
+    public Entity getEntity() {
+        return player;
+    }
 }

@@ -50,9 +50,9 @@ public class Player extends Entity {
     public void moveUp() {
         int newY = getY() - 1;
         int newX = getX();
+        direction = new SimpleStringProperty("Up");
         if (dungeon.validMove(this, newX, newY)) {
             y().set(newY);
-            direction = new SimpleStringProperty("Up");
             pingObservers();
         }
     }
@@ -60,9 +60,9 @@ public class Player extends Entity {
     public void moveDown() {
         int newY = getY() + 1;
         int newX = getX();
+        direction = new SimpleStringProperty("Down");
         if (dungeon.validMove(this, newX, newY)) {
             y().set(newY);
-            direction = new SimpleStringProperty("Down");
             pingObservers();
         }
     }
@@ -70,9 +70,9 @@ public class Player extends Entity {
     public void moveLeft() {
         int newY = getY();
         int newX = getX() - 1;
+        direction = new SimpleStringProperty("Left"); 
         if (dungeon.validMove(this, newX, newY)) {
-            x().set(newX);
-            direction = new SimpleStringProperty("Left");            
+            x().set(newX);           
             pingObservers();
         }         
     }
@@ -80,6 +80,7 @@ public class Player extends Entity {
     public void moveRight() {
         int newY = getY();
         int newX = getX() + 1;
+        direction = new SimpleStringProperty("Right");
         if (dungeon.validMove(this, newX, newY)) {
             x().set(newX);
             direction = new SimpleStringProperty("Right");

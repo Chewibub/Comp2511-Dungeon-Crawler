@@ -5,6 +5,7 @@ package unsw.dungeon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A dungeon in the interactive dungeon player.
@@ -18,16 +19,19 @@ import java.util.List;
 public class Dungeon {
 
     private int width, height;
-    private List<Entity> entities;
+    private CopyOnWriteArrayList<Entity> entities;
     private Player player;
 
     private DungeonDisplay dungeonDisplay;
 
+    public CopyOnWriteArrayList<Goal> goals;
+
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
-        this.entities = new ArrayList<>();
+        this.entities = new CopyOnWriteArrayList<>();
         this.player = null;
+        this.goals = new CopyOnWriteArrayList<>();
     }
 
     public int getWidth() {
@@ -48,7 +52,7 @@ public class Dungeon {
     }
 
     public List<Entity> getEntities() {
-        return entities;
+        return this.entities;
     }
 
     public void removeEntity(Entity delEntity) {
@@ -79,12 +83,35 @@ public class Dungeon {
         for (Entity temp : this.entities) {
             if (temp != null) {
                 if (temp.getX() == x && temp.getY() == y) {
-                    if (temp.getType().equals("Wall")) {
+                    if (temp.checkSolid()) {
                         return false;
                     }
                 }
             }
         }
         return true;
+    }
+
+    public void addGoal(Goal goal) {
+        goals.add(goal);
+        goal.addEntities(this.entities);
+    }
+
+    public List<Goal> getGoals() {
+        return goals;
+    }
+
+    public void printGoals() {
+        System.out.println("~~~~GOALS~~~~");
+        String type = "ONE";
+        for (Goal temp : goals) {
+            if (temp != null) {
+                System.out.println(temp.toString());
+                type = temp.getCondition();
+            }
+        }
+        if (type.equals("ONE") || type.equals("OR")) {
+            System.out.println("~~~~Complete one of the above~~~~");
+        }
     }
 }
