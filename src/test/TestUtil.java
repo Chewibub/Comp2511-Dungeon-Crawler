@@ -39,11 +39,10 @@ public class TestUtil {
                 Enemy enemy = new Enemy(dungeon, x, y);
                 entity = enemy;
                 break;
-
             case "potion":
                 Potion potion = new Potion(dungeon, x, y);
                 entity = potion;
-
+                break;
             case "boulder":
                 Boulder boulder = new Boulder(dungeon, x, y);
                 entity = boulder;
@@ -79,17 +78,17 @@ public class TestUtil {
         int width = json.getInt("width");
         int height = json.getInt("height");
         Dungeon dungeon = new Dungeon(width, height);
-
         JSONArray jsonEntities = json.getJSONArray("entities");
 
         for (int i = 0; i < jsonEntities.length(); i++) {
             TestUtil.loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
         JSONObject jsonGoals = json.getJSONObject("goal-condition");
-        loadGoals(dungeon,jsonGoals,"ONE");
+        loadGoals(dungeon, jsonGoals, "ONE");
         return dungeon;
 
     }
+
     public static void moveDown(Player player, int steps) {
         for (int i = 0; i < steps; i++) {
             player.moveDown();
@@ -132,5 +131,9 @@ public class TestUtil {
                     break;
             }
         }
+    }
+
+    public static int countEnemy(Dungeon dungeon) {
+        return (int) dungeon.getEntities().stream().filter(e -> e.getType().equals("Enemy")).count();
     }
 }
