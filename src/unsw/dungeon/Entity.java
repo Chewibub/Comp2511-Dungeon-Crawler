@@ -100,4 +100,12 @@ public class Entity implements EntitySubject{
         return false;
     }
 
+    public void setX(int value) {
+    	x().set(value);
+    }
+
+    public void setY(int value) {
+    	y().set(value);
+    }
+    
 }
