@@ -2,29 +2,37 @@ package test;
 
 import org.junit.Before;
 import org.junit.Test;
-import unsw.dungeon.Dungeon;
-import unsw.dungeon.Player;
+import unsw.dungeon.*;
 
 import java.io.FileNotFoundException;
+
+import javax.sound.sampled.Port;
 
 import static org.junit.Assert.assertEquals;
 
 
 public class MovementTest {
-
-    private Dungeon dungeon;
-
-    @Before
-    public void setup() throws FileNotFoundException {
-        dungeon = TestUtil.load("/tmp_amd/cage/export/cage/4/z5167295/H17B-CD/dungeons/maze.json");
-
-
-    }
+  
 
     @Test
     public void testMove() {
 
-        Player player = dungeon.getPlayer();
+        Dungeon dungeon = new Dungeon(10, 10);
+
+        Wall wall1 = new Wall(0, 0);
+        Wall wall2 = new Wall(0, 1);
+        Wall wall3 = new Wall(1, 0);
+        Wall wall4 = new Wall(2, 2);
+
+        
+        dungeon.addEntity(wall1);
+        dungeon.addEntity(wall2);
+        dungeon.addEntity(wall3);
+        dungeon.addEntity(wall4);
+
+        Player player = new Player(dungeon, 1, 1);
+        dungeon.setPlayer(player);
+        
         // up and left: wall
         player.moveUp();
         player.moveLeft();
@@ -44,6 +52,38 @@ public class MovementTest {
 
     }
 
+
+    @Test
+    public void testPortal() {
+
+        Dungeon dungeon = new Dungeon(10, 10);
+
+        Portal portal1 = new Portal(dungeon, 1, 3, 1);
+        Portal portal2 = new Portal(dungeon, 6, 7, 1);
+
+        dungeon.addEntity(portal1);
+        dungeon.addEntity(portal2);
+
+        Player player = new Player(dungeon, 1, 1);
+        dungeon.setPlayer(player);
+        
+        // up and left: wall
+
+        assertEquals(1, player.getX());
+        assertEquals(1, player.getY());
+        player.moveDown();
+        assertEquals(1, player.getX());
+        assertEquals(2, player.getY());
+        player.moveDown();
+        portal1.smash();
+        player.moveDown();
+
+        assertEquals(6, player.getX());
+        assertEquals(8, player.getY());
+
+    }
+
+    
 
 }
 

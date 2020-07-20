@@ -2,30 +2,51 @@ package test;
 
 import org.junit.Before;
 import org.junit.Test;
-import unsw.dungeon.Dungeon;
-import unsw.dungeon.Goal;
-import unsw.dungeon.Player;
+import unsw.dungeon.*;
 
 import java.io.FileNotFoundException;
 
 import static org.junit.Assert.*;
 
 public class BoulderAndSwitchTest {
-    private Dungeon dungeon;
 
-    @Before
-    public void setup() throws FileNotFoundException {
-        dungeon=TestUtil.load("/tmp_amd/cage/export/cage/4/z5167295/H17B-CD/dungeons/test-boulders.json");
-    }
 
     @Test
     public void testBoulderAndSwitch(){
-        Player player = dungeon.getPlayer();
-        Goal goal = dungeon.getGoals().get(0);
+        
+        Dungeon dungeon = new Dungeon(5, 5);
+        Player player = new Player(dungeon, 0, 0);
+        dungeon.setPlayer(player);
+
+
+
+        Boulder boulder1 = new Boulder(dungeon, 1, 0);
+        Boulder boulder2 = new Boulder(dungeon, 0, 1);
+        Boulder boulder3 = new Boulder(dungeon, 0, 2);
+        Boulder boulder4 = new Boulder(dungeon, 3, 2);
+
+        dungeon.addEntity(boulder1);
+        dungeon.addEntity(boulder2);
+        dungeon.addEntity(boulder3);
+        dungeon.addEntity(boulder4);
+
+        Switch switch1 = new Switch(dungeon, 0, 1);
+        Switch switch2 = new Switch(dungeon, 0, 2);
+        Switch switch3 = new Switch(dungeon, 4, 0);
+        Switch switch4 = new Switch(dungeon, 3, 4);
+        
+        dungeon.addEntity(switch1);
+        dungeon.addEntity(switch2);
+        dungeon.addEntity(switch3);
+        dungeon.addEntity(switch4);
+
+        Goal goal  = new Goal("boulder", "ONE");
+        dungeon.addGoal(goal);
+
         assertFalse(goal.checkCompleted());
-        assertEquals("boulder",goal.getType());
-        assertEquals( 0,player.getX());
-        assertEquals( 0,player.getY());
+        assertEquals("boulder", goal.getType());
+        assertEquals(0, player.getX());
+        assertEquals(0, player.getY());
         // play can not push 2 boulders at once
         player.moveDown();
         assertEquals(0, player.getY());

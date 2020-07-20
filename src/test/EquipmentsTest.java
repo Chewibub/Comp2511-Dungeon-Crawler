@@ -1,69 +1,127 @@
 package test;
 
-import org.junit.Before;
 import org.junit.Test;
-import unsw.dungeon.Dungeon;
-import unsw.dungeon.Enemy;
-import unsw.dungeon.Entity;
-import unsw.dungeon.Player;
+import unsw.dungeon.*;
 
-import java.io.FileNotFoundException;
 
 import static org.junit.Assert.*;
 
 public class EquipmentsTest {
-    private Dungeon dungeon;
-    private Enemy enemy;
-
-    @Before
-    public void setup() throws FileNotFoundException {
-        dungeon = TestUtil.load("/tmp_amd/cage/export/cage/4/z5167295/H17B-CD/dungeons/test-equipments.json");
-        for (Entity entity : dungeon.getEntities()) {
-            if ("Enemy".equals(entity.getType())) {
-                enemy = (Enemy) entity;
-                enemy.setMovable(false);
-            }
-        }
-    }
 
     @Test
-    public void testSword(){
-        Player player = dungeon.getPlayer();
+    public void testSword() {
+        Dungeon dungeon = new Dungeon(5, 5);
+        Enemy enemy1 = new Enemy(dungeon, 0, 0);
+        Enemy enemy2 = new Enemy(dungeon, 1, 0);
+        Enemy enemy3 = new Enemy(dungeon, 2, 0);
+        Enemy enemy4 = new Enemy(dungeon, 3, 0);
+        Enemy enemy5 = new Enemy(dungeon, 4, 0);
+
+        Enemy enemy6 = new Enemy(dungeon, 0, 1);
+        Enemy enemy7 = new Enemy(dungeon, 1, 1);
+        Enemy enemy8 = new Enemy(dungeon, 2, 1);
+        Enemy enemy9 = new Enemy(dungeon, 3, 1);
+        Enemy enemy10 = new Enemy(dungeon, 4, 1);
+        
+        Sword sword = new Sword(dungeon, 2, 3);
+
+        Player player = new Player(dungeon, 3, 3);
+        dungeon.setPlayer(player);
+
+        dungeon.addEntity(enemy1);
+        dungeon.addEntity(enemy2);
+        dungeon.addEntity(enemy3);
+        dungeon.addEntity(enemy4);
+        dungeon.addEntity(enemy5);
+        dungeon.addEntity(enemy6);
+        dungeon.addEntity(enemy7);
+        dungeon.addEntity(enemy8);
+        dungeon.addEntity(enemy9);
+        dungeon.addEntity(enemy10);
+        
+        dungeon.addEntity(sword);
+
+
         int enemyCount = TestUtil.countEnemy(dungeon);
         // get the sword
         player.moveLeft();
-        assertEquals(5,player.getSwordCharges());
+        assertEquals(5, player.getSwordCharges());
+
         TestUtil.moveLeft(player, 3);
         TestUtil.moveUp(player, 2);
-        assertEquals(4,player.getSwordCharges());
-        assertEquals(enemyCount - 1, TestUtil.countEnemy(dungeon));
+        TestUtil.moveLeft(player, 5);
         TestUtil.moveRight(player, 4);
+
+        assertEquals(3, player.getSwordCharges());
+        assertEquals(enemyCount - 2, TestUtil.countEnemy(dungeon));
+
+        TestUtil.moveRight(player, 10);
+        player.moveUp();
+        TestUtil.moveLeft(player, 10);
+
         assertEquals(0, player.getSwordCharges());
         assertEquals(enemyCount- 5, TestUtil.countEnemy(dungeon));
+        enemy1.smash();
 
-        player.moveUp();
-        // killed by an enemy
         assertTrue(player.failed());
     }
 
     @Test
     public void testPotion(){
-        Player player = dungeon.getPlayer();
+        Dungeon dungeon = new Dungeon(5, 5);
+        Enemy enemy1 = new Enemy(dungeon, 0, 0);
+        Enemy enemy2 = new Enemy(dungeon, 1, 0);
+        Enemy enemy3 = new Enemy(dungeon, 2, 0);
+        Enemy enemy4 = new Enemy(dungeon, 3, 0);
+        Enemy enemy5 = new Enemy(dungeon, 4, 0);
+
+        Enemy enemy6 = new Enemy(dungeon, 0, 1);
+        Enemy enemy7 = new Enemy(dungeon, 1, 1);
+        Enemy enemy8 = new Enemy(dungeon, 2, 1);
+        Enemy enemy9 = new Enemy(dungeon, 3, 1);
+        Enemy enemy10 = new Enemy(dungeon, 4, 1);
+        
+        Potion potion  = new Potion(dungeon, 2, 3);
+
+        Player player = new Player(dungeon, 3, 3);
+        dungeon.setPlayer(player);
+
+        dungeon.addEntity(enemy1);
+        dungeon.addEntity(enemy2);
+        dungeon.addEntity(enemy3);
+        dungeon.addEntity(enemy4);
+        dungeon.addEntity(enemy5);
+        dungeon.addEntity(enemy6);
+        dungeon.addEntity(enemy7);
+        dungeon.addEntity(enemy8);
+        dungeon.addEntity(enemy9);
+        dungeon.addEntity(enemy10);
+        
+        dungeon.addEntity(potion);
+
+
         int enemyCount = TestUtil.countEnemy(dungeon);
         assertEquals(10, enemyCount);
         // get the potion
-        player.moveRight();
+        player.moveLeft();
         assertTrue(player.getInvincibility());
-        TestUtil.moveRight(player, 2);
+
+        TestUtil.moveLeft(player, 3);
         TestUtil.moveUp(player, 2);
-        assertEquals(enemyCount - 1, TestUtil.countEnemy(dungeon));
-        TestUtil.moveLeft(player, 4);
-        assertEquals(0, player.getSwordCharges());
-        assertEquals(enemyCount- 5, TestUtil.countEnemy(dungeon));
-        player.moveUp();
-        // kill left enemies
+        TestUtil.moveLeft(player, 5);
         TestUtil.moveRight(player, 4);
-        assertEquals(0, TestUtil.countEnemy(dungeon));
+
+        assertEquals(enemyCount - 2, TestUtil.countEnemy(dungeon));
+
+        TestUtil.moveRight(player, 10);
+        player.moveUp();
+        TestUtil.moveLeft(player, 10);
+
+        assertEquals(enemyCount- 5, TestUtil.countEnemy(dungeon));
+        enemy1.smash();
+
         assertFalse(player.failed());
+        
+        
     }
 }

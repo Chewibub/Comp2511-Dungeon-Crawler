@@ -13,23 +13,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class EnemyTest {
-    private Dungeon dungeon;
-    private Enemy enemy;
 
-    @Before
-    public void setup() throws FileNotFoundException {
-        dungeon = TestUtil.load("/tmp_amd/cage/export/cage/4/z5167295/H17B-CD/dungeons/test-enemy.json");
-        for (Entity entity : dungeon.getEntities()) {
-            if ("Enemy".equals(entity.getType())) {
-                enemy = (Enemy) entity;
-                return;
-            }
-        }
-    }
 
     @Test
     public void testEnemyMove() {
-        Player player = dungeon.getPlayer();
+        Dungeon dungeon = new Dungeon(5, 5);
+        Enemy enemy = new Enemy(dungeon, 0, 0);
+        Player player = new Player(dungeon, 3, 3);
+
+        dungeon.setPlayer(player);
+
+        dungeon.addEntity(enemy);
+
         assertEquals(0, enemy.getX());
         assertEquals(0, enemy.getY());
         player.moveDown();

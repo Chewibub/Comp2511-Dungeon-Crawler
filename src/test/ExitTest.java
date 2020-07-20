@@ -1,36 +1,47 @@
 package test;
 
-import org.junit.Before;
-import org.junit.Test;
-import unsw.dungeon.Dungeon;
-import unsw.dungeon.Goal;
-import unsw.dungeon.Player;
 
-import java.io.FileNotFoundException;
+import org.junit.Test;
+
+import unsw.dungeon.*;
 
 import static org.junit.Assert.*;
 
 public class ExitTest {
-    private Dungeon dungeon;
 
-    @Before
-    public void setup() throws FileNotFoundException {
-        dungeon = TestUtil.load("/tmp_amd/cage/export/cage/4/z5167295/H17B-CD/dungeons/test-exit.json");
-
-    }
     @Test
     public void testExit(){
+        
+        Dungeon dungeon = new Dungeon(5, 5);
+        Player player = new Player(dungeon, 0, 0);
+        
+        Wall wall1 = new Wall(3, 3);
+        Wall wall2 = new Wall(3, 2);
+        Wall wall3 = new Wall(3, 4);
+
+        dungeon.addEntity(wall1);
+        dungeon.addEntity(wall2);
+        dungeon.addEntity(wall3);
+
+        Exit exit = new Exit(dungeon, 4, 4);
+
+        dungeon.addEntity(exit);
+
+
+        Goal goal  = new Goal("exit", "ONE");
+        
+        dungeon.addGoal(goal);
+        
         // check goal
-        Player player = dungeon.getPlayer();
-        Goal goal = dungeon.getGoals().get(0);
         assertFalse(goal.checkCompleted());
-        assertEquals("exit",goal.getType());
+        assertEquals("exit", goal.getType());
 
         TestUtil.moveRight(player, 4);
         assertFalse(goal.checkCompleted());
 
         //move to exit
-        TestUtil.moveDown(player, 4);
+        exit.smash();
+        goal.updateGoal();
         assertTrue(goal.checkCompleted());
     }
 
