@@ -1,5 +1,4 @@
 package unsw.dungeon;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -30,22 +29,33 @@ public class Goal implements GoalInterface {
                 }
             }
         } else if (type.equals("boulder") && entities != null) {
-            int numSwitches = 0;
-            int onSwitches = 0;
+//            int numSwitches = 0;
+//            int onSwitches = 0;
+//            for (Entity temp : entities) {
+//                if (temp != null) {
+//                    if (temp.getType().equals("Switch")) {
+//                        temp.update();
+//                        numSwitches++;
+//                        if (temp.checkUsed()) {
+//                            onSwitches++;
+//                        }
+//                    }
+//                }
+//                if (numSwitches == onSwitches) {
+//                    this.completed = true;
+//                }
+//            }
             for (Entity temp : entities) {
                 if (temp != null) {
                     if (temp.getType().equals("Switch")) {
                         temp.update();
-                        numSwitches++;
-                        if (temp.checkUsed()) {
-                            onSwitches++;
+                        if (!temp.checkUsed()) {
+                            return;
                         }
                     }
                 }
-                if (numSwitches == onSwitches) {
-                    this.completed = true;
-                }
             }
+            this.completed = true;
         }
     }
 
