@@ -4,40 +4,44 @@ import java.util.List;
 
 public class Boulder extends Entity {
 
-    private Dungeon dungeon;  
-    
-    public Boulder (Dungeon dungeon, int x, int y) {
+    private Dungeon dungeon;
+
+    public Boulder(Dungeon dungeon, int x, int y) {
         super(x, y, "Boulder");
         this.dungeon = dungeon;
     }
 
     @Override
-    public void smash(){
+    public void smash() {
         Player player = dungeon.getPlayer();
         String direction = player.getDirection();
-        switch(direction) {
-        case "Up":
-            this.setY(this.getY() - 1);
-            break;
-        case "Down":
-            this.setY(this.getY() + 1);
-            break;
-        case "Left":
-            this.setX(this.getX() - 1);
-            break;
-        case "Right":               
-            this.setX(this.getX() + 1);
-            break;
+        switch (direction) {
+            case "Up":
+                this.setY(this.getY() - 1);
+                break;
+            case "Down":
+                this.setY(this.getY() + 1);
+                break;
+            case "Left":
+                this.setX(this.getX() - 1);
+                break;
+            case "Right":
+                this.setX(this.getX() + 1);
+                break;
         }
-        
+
     }
 
+    // fix bug: when a boulder reaches the map bound
     public boolean checkMove(String direction) {
         List<Entity> entities = dungeon.getEntities();
         for (Entity temp : entities) {
             if (temp != null) {
-                switch(direction) {
+                switch (direction) {
                     case "Up":
+                        if (this.getY() == 0) {
+                            return false;
+                        }
                         if (temp.getY() == this.getY() - 1 && temp.getX() == this.getX()) {
                             if (temp.getType().equals("Boulder")) {
                                 return false;
@@ -47,6 +51,9 @@ public class Boulder extends Entity {
                         }
                         break;
                     case "Down":
+                        if (this.getY() == dungeon.getHeight() - 1) {
+                            return false;
+                        }
                         if (temp.getY() == this.getY() + 1 && temp.getX() == this.getX()) {
                             if (temp.getType().equals("Boulder")) {
                                 return false;
@@ -56,6 +63,9 @@ public class Boulder extends Entity {
                         }
                         break;
                     case "Left":
+                        if (this.getX() == 0) {
+                            return false;
+                        }
                         if (temp.getX() == this.getX() - 1 && temp.getY() == this.getY()) {
                             if (temp.getType().equals("Boulder")) {
                                 return false;
@@ -65,6 +75,9 @@ public class Boulder extends Entity {
                         }
                         break;
                     case "Right":
+                        if (this.getX() == dungeon.getWidth() - 1) {
+                            return false;
+                        }
                         if (temp.getX() == this.getX() + 1 && temp.getY() == this.getY()) {
                             if (temp.getType().equals("Boulder")) {
                                 return false;
@@ -73,7 +86,7 @@ public class Boulder extends Entity {
                             }
                         }
                         break;
-                    }
+                }
             }
         }
         return true;
