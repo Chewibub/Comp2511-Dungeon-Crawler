@@ -65,6 +65,7 @@ public class Dungeon {
                 newEntities.add(e);
             }
         }
+        this.controller.removeImage(delEntity.getOriginal());
         entities = newEntities;
     }
     
