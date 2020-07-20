@@ -72,7 +72,7 @@ public class Dungeon {
         for (Entity temp : this.entities) {
             if (temp != null) {
                 if (temp.getX() == x && temp.getY() == y) {
-                    if (temp.getType().equals("Wall")) {
+                    if (temp.checkSolid()) {
                         return false;
                     }
                 }

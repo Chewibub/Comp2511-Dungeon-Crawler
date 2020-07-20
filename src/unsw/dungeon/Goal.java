@@ -43,10 +43,12 @@ public class Goal implements GoalInterface {
         return completed;
     }
 
+    //Goals such as exit, boulders, etc
     public String getType() {
         return this.type;
     }
 
+    //Conditionals such as AND and OR
     public String getCondition() {
         return this.condition;
     }

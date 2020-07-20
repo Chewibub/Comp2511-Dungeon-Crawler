@@ -19,7 +19,6 @@ public class Entity implements EntitySubject{
     private IntegerProperty x, y;
     private StringProperty type;
 
-    private StringProperty type;
     private CopyOnWriteArrayList<DungeonObserver> observers;
 
     /**
@@ -87,6 +86,18 @@ public class Entity implements EntitySubject{
     }
 
     public void smash() {
+    }
+
+    public boolean checkUsed() {
+        return false;
+    }
+
+    public boolean checkSolid() {
+        String test = this.getType();
+        if (test.equals("Wall")) {
+            return true;
+        }
+        return false;
     }
 
 }
