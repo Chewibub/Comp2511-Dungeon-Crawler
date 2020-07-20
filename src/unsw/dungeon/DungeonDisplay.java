@@ -2,6 +2,8 @@ package unsw.dungeon;
 
 import java.util.List;
 
+import javafx.application.Platform;
+
 public class DungeonDisplay implements DungeonObserver {
     Dungeon dungeon;
     Player player;
@@ -34,19 +36,33 @@ public class DungeonDisplay implements DungeonObserver {
         }
 
         List<Goal> goals = dungeon.getGoals();
+        String conditional = "ONE";
         for (Goal temp : goals) {
             if (temp != null) {
                 temp.updateGoal();
+                conditional = temp.getCondition();
                 if (temp.checkCompleted() == true && temp.getCondition().equals("ONE")) {
                     System.out.println("You won!!");
+                    Platform.exit();
+                    break;
+                } else if (temp.checkCompleted() == true && temp.getCondition().equals("OR")) {
+                    System.out.println("You won!!");
+                    Platform.exit();
+                    break;
+                } else if (temp.getCondition().equals("AND")) {
+                    if (temp.checkCompleted() == false) {
+                        return;
+                    }
                 }
             }
         }
-
+        if (conditional.equals("AND")) {
+            System.out.println("You won!!");
+            Platform.exit();            
+        }
     }
 
-//    @Override
-//    public Entity getEntity() {
-//        return player;
-//    }
+    public Entity getEntity() {
+        return player;
+    }
 }
