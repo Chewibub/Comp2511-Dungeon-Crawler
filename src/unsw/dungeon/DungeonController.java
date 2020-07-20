@@ -50,11 +50,20 @@ public class DungeonController {
 
     }
     
-    public void moveEnemies() {
+    public void onTick() {
         for (Entity e : dungeon.getEntities()) {
-            if (e.getType() == "Enemy") {
-                Enemy enemy = (Enemy) e;
-                enemy.triggerMovement();
+            switch (e.getType()) {
+                case "Enemy":
+                    Enemy enemy = (Enemy) e;
+                    enemy.triggerMovement();
+                    if (enemy.collides(player)) {
+                        enemy.smash();
+                    }
+                    break;
+                case "Portal":
+                    Portal portal = (Portal) e;
+                    portal.activate();
+
             }
         }
     }
@@ -68,23 +77,19 @@ public class DungeonController {
         switch (event.getCode()) {
         case UP:
             player.moveUp();
-            moveEnemies();
-            player.pingObservers();
+            onTick();
             break;
         case DOWN:
             player.moveDown();
-            moveEnemies();
-            player.pingObservers();
+            onTick();
             break;
         case LEFT:
             player.moveLeft();
-            moveEnemies();
-            player.pingObservers();
+            onTick();
             break;
         case RIGHT:
             player.moveRight();
-            moveEnemies();
-            player.pingObservers();
+            onTick();
             break;
         default:
             break;
