@@ -1,9 +1,5 @@
 package unsw.dungeon;
 
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 /**
  * The Enemy entity
  * Moves left to right
@@ -13,8 +9,11 @@ public class Enemy extends Entity {
 
     private Dungeon dungeon;
     private int direction;
+    private boolean movable = true;
+
     /**
      * Create a enemy positioned in square (x,y)
+     *
      * @param x
      * @param y
      */
@@ -24,8 +23,10 @@ public class Enemy extends Entity {
         this.dungeon = dungeon;
         this.direction = 1;
     }
+
     public void triggerMovement() {
-        move(direction);
+        if (movable)
+            move(direction);
     }
 
     public void move(int d) {
@@ -35,9 +36,10 @@ public class Enemy extends Entity {
             x().set(newX);
         } else {
             direction = d * -1;
+            x().set(getX() + direction);
         }
     }
-    
+
     public void smash() {
         Player player = dungeon.getPlayer();
 
@@ -50,7 +52,12 @@ public class Enemy extends Entity {
             player.setSwordCharges(player.getSwordCharges() - 1);
         } else {
             System.out.println("You have died!");
-            Platform.exit();
+            dungeon.getPlayer().fail();
+//            Platform.exit();
         }
+    }
+
+    public void setMovable(boolean movable) {
+        this.movable = movable;
     }
 }
