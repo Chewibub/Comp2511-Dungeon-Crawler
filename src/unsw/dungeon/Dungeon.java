@@ -26,6 +26,8 @@ public class Dungeon {
 
     public CopyOnWriteArrayList<Goal> goals;
 
+    private DungeonController controller;
+
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
@@ -63,6 +65,7 @@ public class Dungeon {
                 newEntities.add(e);
             }
         }
+        this.controller.removeImage(delEntity.getOriginal());
         entities = newEntities;
     }
     
@@ -113,4 +116,9 @@ public class Dungeon {
             System.out.println("~~~~Complete one of the above~~~~");
         }
     }
+
+    public void setConstroller(DungeonController controller) {
+        this.controller = controller;
+    }
+
 }

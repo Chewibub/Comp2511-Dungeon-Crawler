@@ -136,11 +136,32 @@ public abstract class DungeonLoader {
             onLoad(s);
             entity = s;
             break;
+        case "treasure":
+            Treasure treasure = new Treasure(dungeon, x, y);
+            onLoad(treasure);
+            entity = treasure;
+            break;
+        case "door":
+            int doorID = json.getInt("id");
+            Door door = new Door(dungeon, x, y, doorID);
+            onLoad(door);
+            entity = door;
+            break;
+        case "key":
+            int keyID = json.getInt("id");
+            Key key = new Key(dungeon, x, y, keyID);
+            onLoad(key);
+            entity = key;
+            break;
+        case "portal":
+            int portalID = json.getInt("id");
+            Portal portal = new Portal(dungeon, x, y, portalID);
+            onLoad(portal);
+            entity = portal;
+            break;
         }
-        
-        
-        // TODO Handle other possible entities
 
+        // TODO Handle other possible entities
         dungeon.addEntity(entity);
     }
 
@@ -158,4 +179,10 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Boulder boulder);
 
     public abstract void onLoad(Switch s);
+
+    public abstract void onLoad(Treasure treasure);
+
+    public abstract void onLoad(Door door);
+    public abstract void onLoad(Portal portal);
+
 }

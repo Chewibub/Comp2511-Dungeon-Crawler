@@ -32,6 +32,9 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image potionImage;
     private Image boulderImage;
     private Image switchImage;
+    private Image treasureImage;
+    private Image doorImage;
+    private Image portalImage;
 
     public DungeonControllerLoader(String filename)
             throws FileNotFoundException {
@@ -45,35 +48,44 @@ public class DungeonControllerLoader extends DungeonLoader {
         potionImage = new Image((new File("images/brilliant_blue_new.png")).toURI().toString());
         boulderImage = new Image((new File("images/boulder.png")).toURI().toString());
         switchImage = new Image((new File("images/pressure_plate.png")).toURI().toString());
+        treasureImage = new Image((new File("images/gold_pile.png")).toURI().toString());
+        doorImage = new Image((new File("images/closed_door.png")).toURI().toString());
+        portalImage = new Image((new File("images/portal.png")).toURI().toString());
+        
     }
 
     @Override
     public void onLoad(Entity player) {
         ImageView view = new ImageView(playerImage);
+        player.setOriginalImage(view);
         addEntity(player, view);
     }
 
     @Override
     public void onLoad(Wall wall) {
         ImageView view = new ImageView(wallImage);
+        wall.setOriginalImage(view);
         addEntity(wall, view);
     }
 
     @Override
     public void onLoad(Enemy enemy) {
         ImageView view = new ImageView(enemyImage);
+        enemy.setOriginalImage(view);
         addEntity(enemy, view);
     }
     
     @Override
     public void onLoad(Exit exit) {
         ImageView view = new ImageView(exitImage);
+        exit.setOriginalImage(view);
         addEntity(exit, view);
     }
 
     @Override
     public void onLoad(Sword sword) {
         ImageView view = new ImageView(swordImage);
+        sword.setOriginalImage(view);
         addEntity(sword, view);
     }
 
@@ -96,8 +108,28 @@ public class DungeonControllerLoader extends DungeonLoader {
         addEntity(s, view);
     }
 
+    @Override
+    public void onLoad(Treasure treasure) {
+        ImageView view = new ImageView(treasureImage);
+        addEntity(treasure, view);
+    }
+
+    @Override
+    public void onLoad(Door door) {
+        ImageView view =  new ImageView(doorImage);
+        addEntity(door, view);
+    }
+
+    @Override
+    public void onLoad(Portal portal) {
+        ImageView view =  new ImageView(portalImage);
+        addEntity(portal, view);
+    }
+
+
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
+        entity.setOriginalImage(view);
         entities.add(view);
     }
 

@@ -15,6 +15,10 @@ public class Player extends Entity {
     private int swordCharges;
     private boolean invincible;
     private boolean fail = false;
+    private Key key;
+
+    private int keyInventory = 0;
+
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -96,5 +100,22 @@ public class Player extends Entity {
     }
     public boolean failed(){
         return fail;
+    }
+
+    public void setKey(Key key) {
+        this.key = key;
+        this.keyInventory = 1;
+    }
+
+    public Key getKey() {
+        return this.key;
+    }
+    public void delKey() {
+        this.keyInventory = 0;
+        dungeon.removeEntity(this.key);
+    }
+
+    public int getKeyInventory() {
+        return this.keyInventory;
     }
 }
