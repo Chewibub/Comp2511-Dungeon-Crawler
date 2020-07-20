@@ -42,11 +42,11 @@ public class Enemy extends Entity {
         Player player = dungeon.getPlayer();
 
         if (player.getInvincibility()) {
-            // Kill Enemy
             System.out.println("You killed an enemy!");
+            dungeon.removeEntity(this);
         } else if (player.getSwordCharges() > 0) {
-            // Kill Enemy
             System.out.println("You killed an enemy!");
+            dungeon.removeEntity(this);
             player.setSwordCharges(player.getSwordCharges() - 1);
         } else {
             System.out.println("You have died!");

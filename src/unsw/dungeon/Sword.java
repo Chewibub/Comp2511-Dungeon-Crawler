@@ -11,8 +11,7 @@ public class Sword extends Entity {
     public void smash() {
         System.out.println("You picked up a sword!");
         dungeon.getPlayer().setSwordCharges(5);
-
-        // TODO remove entity
+        dungeon.removeEntity(this);
     }
 
 }
