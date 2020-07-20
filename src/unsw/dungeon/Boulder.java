@@ -4,34 +4,35 @@ import java.util.List;
 
 public class Boulder extends Entity {
 
-    private Dungeon dungeon;  
-    
-    public Boulder (Dungeon dungeon, int x, int y) {
+    private Dungeon dungeon;
+
+    public Boulder(Dungeon dungeon, int x, int y) {
         super(x, y, "Boulder");
         this.dungeon = dungeon;
     }
 
     @Override
-    public void smash(){
+    public void smash() {
         Player player = dungeon.getPlayer();
         String direction = player.getDirection();
-        switch(direction) {
-        case "Up":
-            this.setY(this.getY() - 1);
-            break;
-        case "Down":
-            this.setY(this.getY() + 1);
-            break;
-        case "Left":
-            this.setX(this.getX() - 1);
-            break;
-        case "Right":               
-            this.setX(this.getX() + 1);
-            break;
+        switch (direction) {
+            case "Up":
+                this.setY(this.getY() - 1);
+                break;
+            case "Down":
+                this.setY(this.getY() + 1);
+                break;
+            case "Left":
+                this.setX(this.getX() - 1);
+                break;
+            case "Right":
+                this.setX(this.getX() + 1);
+                break;
         }
-        
+
     }
 
+    // fix bug: when a boulder reaches the map bound
     public boolean checkMove(String direction) {
         List<Entity> entities = dungeon.getEntities();
         for (Entity temp : entities) {
@@ -90,7 +91,6 @@ public class Boulder extends Entity {
         }
         return true;
     }
-
 
     @Override
     public boolean checkSolid() {

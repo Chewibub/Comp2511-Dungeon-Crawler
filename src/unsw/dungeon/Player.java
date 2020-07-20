@@ -15,6 +15,10 @@ public class Player extends Entity {
     private int swordCharges;
     private boolean invincible;
     private boolean fail = false;
+    private Key key;
+
+    private int keyInventory = 0;
+
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -87,6 +91,19 @@ public class Player extends Entity {
             direction = new SimpleStringProperty("Right");
             pingObservers();
         }
+<<<<<<< src/unsw/dungeon/Player.java
+=======
+
+    }
+
+    public void fail() {
+        fail = true;
+        removeAllObservers();
+    }
+    public boolean failed(){
+        return fail;
+    }
+>>>>>>> src/unsw/dungeon/Player.java
 
     }
 
