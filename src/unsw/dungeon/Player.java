@@ -91,8 +91,6 @@ public class Player extends Entity {
             direction = new SimpleStringProperty("Right");
             pingObservers();
         }
-<<<<<<< src/unsw/dungeon/Player.java
-=======
 
     }
 
@@ -103,15 +101,21 @@ public class Player extends Entity {
     public boolean failed(){
         return fail;
     }
->>>>>>> src/unsw/dungeon/Player.java
 
+    public void setKey(Key key) {
+        this.key = key;
+        this.keyInventory = 1;
     }
 
-    public void fail() {
-        fail = true;
-        removeAllObservers();
+    public Key getKey() {
+        return this.key;
     }
-    public boolean failed(){
-        return fail;
+    public void delKey() {
+        this.keyInventory = 0;
+        dungeon.removeEntity(this.key);
+    }
+
+    public int getKeyInventory() {
+        return this.keyInventory;
     }
 }
