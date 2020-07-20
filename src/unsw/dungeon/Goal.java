@@ -42,10 +42,21 @@ public class Goal implements GoalInterface {
                         }
                     }
                 }
-                if (numSwitches == onSwitches) {
-                    this.completed = true;
+            }
+            if (numSwitches == onSwitches) {
+                this.completed = true;
+            } 
+        } else if (type.equals("treasure") && entities != null) {
+            for (Entity temp : entities) {
+                if (temp != null) {
+                    if (temp.getType().equals("Treasure")) {
+                        if (!temp.checkUsed()) {
+                            return;
+                        }
+                    }
                 }
             }
+            this.completed = true;
         }
     }
 
@@ -75,6 +86,8 @@ public class Goal implements GoalInterface {
             return "Get to the exit";
         } else if (type.equals("boulder")) {
             return "Place boulders on all the switches";
+        } else if (type.equals("treasure")) {
+            return "Collect all the treasure";
         }
         return "TODO";
     }
@@ -88,6 +101,10 @@ public class Goal implements GoalInterface {
                     }
                 } else if (type.equals("boulder"))  {
                     if (temp.getType().equals("Switch")) {
+                        entities.add(temp);
+                    }
+                } else if (type.equals("treasure")) {
+                    if (temp.getType().equals("Treasure")) {
                         entities.add(temp);
                     }
                 }

@@ -31,6 +31,7 @@ public class DungeonController {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
+        dungeon.setConstroller(this);
     }
 
     @FXML
@@ -56,6 +57,10 @@ public class DungeonController {
                 enemy.triggerMovement();
             }
         }
+    }
+
+    public void removeImage(ImageView original) {
+        this.initialEntities.remove(original);
     }
 
     @FXML
