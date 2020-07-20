@@ -17,7 +17,7 @@ public class EquipmentsTest {
 
     @Before
     public void setup() throws FileNotFoundException {
-        dungeon = TestUtil.load("dungeons/test-equipments.json");
+        dungeon = TestUtil.load("/tmp_amd/cage/export/cage/4/z5167295/H17B-CD/dungeons/test-equipments.json");
         for (Entity entity : dungeon.getEntities()) {
             if ("Enemy".equals(entity.getType())) {
                 enemy = (Enemy) entity;
