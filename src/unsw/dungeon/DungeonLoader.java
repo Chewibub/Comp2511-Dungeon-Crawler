@@ -69,7 +69,7 @@ public abstract class DungeonLoader {
                 temp = new Goal("exit", type);
                 dungeon.addGoal(temp);
                 break;
-            case "boulder":
+            case "boulders":
                 temp = new Goal("boulder", type);
                 dungeon.addGoal(temp);
                 break;
@@ -114,6 +114,11 @@ public abstract class DungeonLoader {
             onLoad(boulder);
             entity = boulder;
             break;
+        case "switch":
+            Switch s = new Switch(dungeon, x, y);
+            onLoad(s);
+            entity = s;
+            break;
         }
         dungeon.addEntity(entity);
     }
@@ -127,4 +132,5 @@ public abstract class DungeonLoader {
 
     public abstract void onLoad(Boulder boulder);
 
+    public abstract void onLoad(Switch s);
 }

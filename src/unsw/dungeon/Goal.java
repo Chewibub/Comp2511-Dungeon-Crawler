@@ -29,6 +29,23 @@ public class Goal implements GoalInterface {
                     }
                 }
             }
+        } else if (type.equals("boulder") && entities != null) {
+            int numSwitches = 0;
+            int onSwitches = 0;
+            for (Entity temp : entities) {
+                if (temp != null) {
+                    if (temp.getType().equals("Switch")) {
+                        temp.update();
+                        numSwitches++;
+                        if (temp.checkUsed()) {
+                            onSwitches++;
+                        }
+                    }
+                }
+                if (numSwitches == onSwitches) {
+                    this.completed = true;
+                }
+            }
         }
     }
 
@@ -56,7 +73,9 @@ public class Goal implements GoalInterface {
     public String toString() {
         if (type.equals("exit")) {
             return "Get to the exit";
-        } 
+        } else if (type.equals("boulder")) {
+            return "Place boulders on all the switches";
+        }
         return "TODO";
     }
 
@@ -67,7 +86,11 @@ public class Goal implements GoalInterface {
                     if (temp.getType().equals("Exit")) {
                         entities.add(temp);
                     }
-                } 
+                } else if (type.equals("boulder"))  {
+                    if (temp.getType().equals("Switch")) {
+                        entities.add(temp);
+                    }
+                }
             }
         } 
     }
