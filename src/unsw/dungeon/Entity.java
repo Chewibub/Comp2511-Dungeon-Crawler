@@ -6,8 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.util.concurrent.CopyOnWriteArrayList;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 /**
  * An entity in the dungeon.
@@ -21,8 +19,6 @@ public class Entity implements EntitySubject{
     private IntegerProperty x, y;
     private StringProperty type;
     private CopyOnWriteArrayList<DungeonObserver> observers;
-
-    private ImageView original;
 
     /**
      * Create an entity positioned in square (x,y)
@@ -69,6 +65,12 @@ public class Entity implements EntitySubject{
     @Override
     public void removeObserver(DungeonObserver o) {
         observers.remove(o);
+    }
+
+    protected void removeAllObservers() {
+        while (observers.size() > 0) {
+            observers.remove(0);
+        }
     }
 
     @Override
@@ -120,18 +122,6 @@ public class Entity implements EntitySubject{
     }
 
     public void update() {
-    }
-
-    public void setOriginalImage(ImageView i) {
-        this.original = i;
-    }
-
-    public ImageView getOriginal() {
-        return this.original;
-    }
-
-    public int getID() {
-        return 0;
     }
     
 }
