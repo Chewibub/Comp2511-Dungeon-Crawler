@@ -19,11 +19,22 @@ public class DungeonDisplay implements DungeonObserver {
         List<Entity> entities = dungeon.getEntities();
         for (Entity temp : entities) {
             if (temp != null) {
-                if (temp.collides(player) == true) {
-                    temp.smash();
+                if (temp.getType().equals("Enemy")) {
+                    Enemy enemy= (Enemy) temp;
+                    enemy.triggerMovement();
                 }
             }
         }
+
+        for (Entity temp : entities) {
+            if (temp != null) {
+                if (temp.collides(player)) {
+                    temp.smash();
+                }
+
+            }
+        }
+
         List<Goal> goals = dungeon.getGoals();
         String conditional = "ONE";
         for (Goal temp : goals) {
