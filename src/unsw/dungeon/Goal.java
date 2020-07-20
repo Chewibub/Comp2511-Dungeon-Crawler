@@ -30,22 +30,17 @@ public class Goal implements GoalInterface {
                 }
             }
         } else if (type.equals("boulder") && entities != null) {
-            int numSwitches = 0;
-            int onSwitches = 0;
             for (Entity temp : entities) {
                 if (temp != null) {
                     if (temp.getType().equals("Switch")) {
                         temp.update();
-                        numSwitches++;
-                        if (temp.checkUsed()) {
-                            onSwitches++;
+                        if (!temp.checkUsed()) {
+                            return;
                         }
                     }
                 }
             }
-            if (numSwitches == onSwitches) {
-                this.completed = true;
-            } 
+            this.completed = true;
         } else if (type.equals("treasure") && entities != null) {
             for (Entity temp : entities) {
                 if (temp != null) {

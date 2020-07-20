@@ -36,8 +36,11 @@ public class Boulder extends Entity {
         List<Entity> entities = dungeon.getEntities();
         for (Entity temp : entities) {
             if (temp != null) {
-                switch(direction) {
+                switch (direction) {
                     case "Up":
+                        if (this.getY() == 0) {
+                            return false;
+                        }
                         if (temp.getY() == this.getY() - 1 && temp.getX() == this.getX()) {
                             if (temp.getType().equals("Boulder")) {
                                 return false;
@@ -47,6 +50,9 @@ public class Boulder extends Entity {
                         }
                         break;
                     case "Down":
+                        if (this.getY() == dungeon.getHeight() - 1) {
+                            return false;
+                        }
                         if (temp.getY() == this.getY() + 1 && temp.getX() == this.getX()) {
                             if (temp.getType().equals("Boulder")) {
                                 return false;
@@ -56,6 +62,9 @@ public class Boulder extends Entity {
                         }
                         break;
                     case "Left":
+                        if (this.getX() == 0) {
+                            return false;
+                        }
                         if (temp.getX() == this.getX() - 1 && temp.getY() == this.getY()) {
                             if (temp.getType().equals("Boulder")) {
                                 return false;
@@ -65,6 +74,9 @@ public class Boulder extends Entity {
                         }
                         break;
                     case "Right":
+                        if (this.getX() == dungeon.getWidth() - 1) {
+                            return false;
+                        }
                         if (temp.getX() == this.getX() + 1 && temp.getY() == this.getY()) {
                             if (temp.getType().equals("Boulder")) {
                                 return false;
@@ -73,11 +85,12 @@ public class Boulder extends Entity {
                             }
                         }
                         break;
-                    }
+                }
             }
         }
         return true;
     }
+
 
     @Override
     public boolean checkSolid() {
