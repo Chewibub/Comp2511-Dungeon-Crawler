@@ -3,9 +3,9 @@
   "height": 18,
   "entities": [
     {
-      "x": 0,
-      "y": 0,
-      "type": "wall"
+      "x": 3,
+      "y": 3,
+      "type": "boulder"
     },
     {
       "x": 1,
