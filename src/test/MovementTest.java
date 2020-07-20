@@ -16,7 +16,7 @@ public class MovementTest {
 
     @Before
     public void setup() throws FileNotFoundException {
-        dungeon = TestUtil.load("dungeons/maze.json");
+        dungeon = TestUtil.load("/tmp_amd/cage/export/cage/4/z5167295/H17B-CD/dungeons/maze.json");
 
 
     }
