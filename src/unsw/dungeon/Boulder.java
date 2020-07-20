@@ -92,6 +92,7 @@ public class Boulder extends Entity {
         return true;
     }
 
+
     @Override
     public boolean checkSolid() {
         Player player = dungeon.getPlayer();
