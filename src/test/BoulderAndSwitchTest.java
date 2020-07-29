@@ -1,10 +1,11 @@
 package test;
 
-import org.junit.Before;
 import org.junit.Test;
 import unsw.dungeon.*;
-
-import java.io.FileNotFoundException;
+import unsw.dungeon.entity.Boulder;
+import unsw.dungeon.GoalOld;
+import unsw.dungeon.entity.Player;
+import unsw.dungeon.entity.Switch;
 
 import static org.junit.Assert.*;
 
@@ -40,8 +41,8 @@ public class BoulderAndSwitchTest {
         dungeon.addEntity(switch3);
         dungeon.addEntity(switch4);
 
-        Goal goal  = new Goal("boulder", "ONE");
-        dungeon.addGoal(goal);
+        GoalOld goal  = new GoalOld("boulder", "ONE");
+//        dungeon.addGoal(goal);
 
         assertFalse(goal.checkCompleted());
         assertEquals("boulder", goal.getType());

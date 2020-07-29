@@ -3,9 +3,19 @@
  */
 package unsw.dungeon;
 
-import java.util.ArrayList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import unsw.dungeon.controller.DungeonController;
+import unsw.dungeon.entity.Door;
+import unsw.dungeon.entity.Entity;
+import unsw.dungeon.entity.Player;
+import unsw.dungeon.goal.Goal;
+
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 /**
  * A dungeon in the interactive dungeon player.
@@ -24,7 +34,8 @@ public class Dungeon {
 
     private DungeonDisplay dungeonDisplay;
 
-    public CopyOnWriteArrayList<Goal> goals;
+
+    private Goal goal;
 
     private DungeonController controller;
 
@@ -32,8 +43,6 @@ public class Dungeon {
         this.width = width;
         this.height = height;
         this.entities = new CopyOnWriteArrayList<>();
-        this.player = null;
-        this.goals = new CopyOnWriteArrayList<>();
     }
 
     public int getWidth() {
@@ -53,6 +62,13 @@ public class Dungeon {
         this.dungeonDisplay = new DungeonDisplay(this, player);
     }
 
+    public void setGoal(Goal goal) {
+        this.goal = goal;
+    }
+    public Goal getGoal() {
+        return goal;
+    }
+
     public List<Entity> getEntities() {
         return this.entities;
     }
@@ -66,8 +82,12 @@ public class Dungeon {
             }
         }
         entities = newEntities;
+        ImageView original = delEntity.getOriginal();
+        if (controller != null) {
+            controller.removeImage(original);
+        }
     }
-    
+
     public void addEntity(Entity entity) {
         if (entity != null) {
             if (!entity.getType().equals("Player")) {
@@ -93,31 +113,48 @@ public class Dungeon {
         return true;
     }
 
-    public void addGoal(Goal goal) {
-        goals.add(goal);
-        goal.addEntities(this.entities);
-    }
+//    public void addGoal(GoalOld goal) {
+//        goals.add(goal);
+//        goal.addEntities(this.entities);
+//    }
+//
+//    public List<GoalOld> getGoals() {
+//        return goals;
+//    }
 
-    public List<Goal> getGoals() {
-        return goals;
-    }
-
-    public void printGoals() {
+    public void printGoal() {
         System.out.println("~~~~GOALS~~~~");
-        String type = "ONE";
-        for (Goal temp : goals) {
-            if (temp != null) {
-                System.out.println(temp.toString());
-                type = temp.getCondition();
-            }
-        }
-        if (type.equals("ONE") || type.equals("OR")) {
-            System.out.println("~~~~Complete one of the above~~~~");
-        }
+//        String type = "ONE";
+//        for (GoalOld temp : goals) {
+//            if (temp != null) {
+//                System.out.println(temp.toString());
+//                type = temp.getCondition();
+//            }
+//        }
+//        if (type.equals("ONE") || type.equals("OR")) {
+//            System.out.println("~~~~Complete one of the above~~~~");
+//        }
+
+        System.out.println(goal);
     }
 
-    public void setConstroller(DungeonController controller) {
+    public void setController(DungeonController controller) {
         this.controller = controller;
     }
 
+    public void openDoor(Door door) {
+        removeEntity(door);
+        int x = door.getX();
+        int y = door.getY();
+        Image openDoorImage = new Image((new File("images/open_door.png")).toURI().toString());
+        ImageView view = new ImageView(openDoorImage);
+        GridPane.setColumnIndex(view, x);
+        GridPane.setRowIndex(view, y);
+        door.setOriginalImage(view);
+        controller.setImage(view);
+    }
+
+    public List<Entity> getEntitesByType(String type) {
+        return entities.stream().filter(e -> type.equals(e.getType())).collect(Collectors.toList());
+    }
 }

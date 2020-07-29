@@ -1,12 +1,10 @@
 package test;
 
-import org.junit.Before;
 import org.junit.Test;
 import unsw.dungeon.*;
-
-import java.io.FileNotFoundException;
-
-import javax.sound.sampled.Port;
+import unsw.dungeon.entity.Player;
+import unsw.dungeon.entity.Portal;
+import unsw.dungeon.entity.Wall;
 
 import static org.junit.Assert.assertEquals;
 

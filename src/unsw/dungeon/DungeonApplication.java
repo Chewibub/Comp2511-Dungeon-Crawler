@@ -1,34 +1,64 @@
 package unsw.dungeon;
 
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import unsw.dungeon.controller.MainMenuController;
+
+import java.io.IOException;
+
 public class DungeonApplication extends Application {
+    private static Stage primaryStage;
+    private static boolean[] levelStatus;
+    private static int gold;
+    private static String[] dungeons;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Dungeon");
+        
+        DungeonApplication.primaryStage = primaryStage;
+        DungeonApplication.levelStatus = new boolean[6];
+        DungeonApplication.levelStatus[0] = true;
+        String[] dunBuff = {"test-exit.json", "advanced.json"};
+        DungeonApplication.dungeons = dunBuff;
 
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("testing-ground.json");
-
-        DungeonController controller = dungeonLoader.loadController();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
+        primaryStage.setTitle("C-Dungeons");
+        
+        MainMenuController controller = new MainMenuController();
+    
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/MainMenu.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
+        
         Scene scene = new Scene(root);
         root.requestFocus();
         primaryStage.setScene(scene);
         primaryStage.show();
-
+        
+    } 
+    
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 
+    public static int getGold() {
+        return gold;
+    }
+
+    public static boolean getLevelStatus(int index) {
+        return levelStatus[index];
+    }
+    
+    public static String getDungeon(int index) {
+        return dungeons[index];
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }
+    
 }

@@ -4,6 +4,10 @@ package test;
 import org.junit.Test;
 
 import unsw.dungeon.*;
+import unsw.dungeon.entity.Exit;
+import unsw.dungeon.GoalOld;
+import unsw.dungeon.entity.Player;
+import unsw.dungeon.entity.Wall;
 
 import static org.junit.Assert.*;
 
@@ -28,9 +32,9 @@ public class ExitTest {
         dungeon.addEntity(exit);
 
 
-        Goal goal  = new Goal("exit", "ONE");
+        GoalOld goal  = new GoalOld("exit", "ONE");
         
-        dungeon.addGoal(goal);
+        // dungeon.addGoal(goal);
         
         // check goal
         assertFalse(goal.checkCompleted());

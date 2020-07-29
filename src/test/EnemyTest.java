@@ -1,13 +1,9 @@
 package test;
 
-import org.junit.Before;
 import org.junit.Test;
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Enemy;
-import unsw.dungeon.Entity;
-import unsw.dungeon.Player;
-
-import java.io.FileNotFoundException;
+import unsw.dungeon.entity.Enemy;
+import unsw.dungeon.entity.Player;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
