@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
  *
  */
 public class Dungeon {
-
+    private int dungeonIndex;
     private int width, height;
     private CopyOnWriteArrayList<Entity> entities;
     private Player player;
@@ -157,4 +157,13 @@ public class Dungeon {
     public List<Entity> getEntitesByType(String type) {
         return entities.stream().filter(e -> type.equals(e.getType())).collect(Collectors.toList());
     }
+
+    public void setDungeonIndex(int index) {
+        dungeonIndex = index;
+    }
+
+    public int getDungeonIndex() {
+        return dungeonIndex;
+    }
+
 }

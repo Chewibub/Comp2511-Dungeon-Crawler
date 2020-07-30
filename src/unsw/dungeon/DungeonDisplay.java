@@ -5,6 +5,7 @@ import unsw.dungeon.entity.Enemy;
 import unsw.dungeon.entity.Entity;
 import unsw.dungeon.entity.Player;
 import unsw.dungeon.entity.Portal;
+import unsw.dungeon.ui.LevelSelectScreen;
 
 import java.util.List;
 
@@ -45,8 +46,7 @@ public class DungeonDisplay implements DungeonObserver {
         }
         dungeon.getEntitesByType("Switch").forEach(s -> s.update());
         if (dungeon.getGoal() != null && dungeon.getGoal().completed()) {
-            System.out.println("You won!!");
-            Platform.exit();
+            System.out.print("You Won");
         }
 //        List<GoalOld> goals = dungeon.getGoals();
 //        String conditional = "ONE";
