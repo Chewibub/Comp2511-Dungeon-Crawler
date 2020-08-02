@@ -18,6 +18,9 @@ public class Player extends Entity {
     private boolean fail = false;
     private Key key;
 
+    private static boolean startingSword;
+    private static boolean startingLives;
+
     private int keyInventory = 0;
 
     /**
@@ -29,7 +32,11 @@ public class Player extends Entity {
         super(x, y, "Player");
         this.dungeon = dungeon;
         swordCharges = 0;
+        if (Player.startingSword) {
+            swordCharges = 5;
+        }
         invincible = false;
+
     }
 
     public int getSwordCharges() {
@@ -118,5 +125,12 @@ public class Player extends Entity {
 
     public int getKeyInventory() {
         return this.keyInventory;
+    }
+
+    public static boolean getStartingSword() {
+        return Player.startingSword;
+    }
+    public static void setStartingSword() {
+        Player.startingSword = true;
     }
 }

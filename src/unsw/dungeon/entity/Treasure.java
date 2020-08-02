@@ -1,6 +1,7 @@
 package unsw.dungeon.entity;
 
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.DungeonApplication;
 
 public class Treasure extends Entity {
     private Dungeon dungeon;
@@ -23,6 +24,7 @@ public class Treasure extends Entity {
     @Override
     public void smash() {
         System.out.println("Looted Treasure!");
+        DungeonApplication.giveGold(1);
         this.looted = State.ON;
         dungeon.removeEntity(this);
     }

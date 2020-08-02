@@ -3,6 +3,7 @@ package unsw.dungeon.controller;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import unsw.dungeon.ui.LevelSelectScreen;
+import unsw.dungeon.ui.StoreScreen;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.application.Platform;
@@ -34,6 +35,8 @@ public class MainMenuController extends MenuController {
 
     @FXML
     private void handleStore(MouseEvent event) {
+        StoreScreen store = new StoreScreen();
+        store.activate();
     }
 
 

@@ -24,6 +24,7 @@ public class DungeonApplication extends Application {
         DungeonApplication.levelStatus[0] = true;
         String[] dunBuff = {"test-exit.json", "advanced.json", "advanced.json", "advanced.json", "advanced.json", "advanced.json"};
         DungeonApplication.dungeons = dunBuff;
+        DungeonApplication.gold = 5;
 
         primaryStage.setTitle("C-Dungeons");
         
@@ -49,9 +50,14 @@ public class DungeonApplication extends Application {
         return gold;
     }
 
+    public static void giveGold(int value) {
+        DungeonApplication.gold = DungeonApplication.gold + value;
+    }
+
     public static boolean getLevelStatus(int index) {
         return levelStatus[index];
     }
+
     public static void setLevelStatus(int index, boolean status) {
         DungeonApplication.levelStatus[index] = status;
     }

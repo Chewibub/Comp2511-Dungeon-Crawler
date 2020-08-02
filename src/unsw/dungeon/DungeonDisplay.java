@@ -46,7 +46,9 @@ public class DungeonDisplay implements DungeonObserver {
         }
         dungeon.getEntitesByType("Switch").forEach(s -> s.update());
         if (dungeon.getGoal() != null && dungeon.getGoal().completed()) {
-            System.out.print("You Won");
+            DungeonApplication.setLevelStatus(dungeon.getDungeonIndex() + 1, true);
+            LevelSelectScreen levelSelect = new LevelSelectScreen();
+            levelSelect.activate();
         }
 //        List<GoalOld> goals = dungeon.getGoals();
 //        String conditional = "ONE";
