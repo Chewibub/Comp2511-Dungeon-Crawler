@@ -1,11 +1,12 @@
 package unsw.dungeon.controller;
 
+import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import unsw.dungeon.ui.LevelSelectScreen;
-import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
-import javafx.application.Platform;
+
 import java.io.IOException;
 public class MainMenuController extends MenuController {
 

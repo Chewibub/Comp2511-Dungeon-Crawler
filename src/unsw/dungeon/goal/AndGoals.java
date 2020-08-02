@@ -1,6 +1,7 @@
 package unsw.dungeon.goal;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class AndGoals extends ComplexGoal{
     public AndGoals() {
@@ -16,12 +17,14 @@ public class AndGoals extends ComplexGoal{
         return true;
     }
 
+
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("{ AND: ");
-        for (Goal subGoal : subGoals) {
-            builder.append(subGoal.toString()+", ");
-        }
+        StringBuilder builder = new StringBuilder("{  ");
+//        for (Goal subGoal : subGoals) {
+//            builder.append(subGoal.toString()+" and ");
+//        }
+        builder.append(String.join(" and ", subGoals.stream().map(g -> g.toString()).collect(Collectors.toList())));
         builder.append(" }");
         return builder.toString();
     }

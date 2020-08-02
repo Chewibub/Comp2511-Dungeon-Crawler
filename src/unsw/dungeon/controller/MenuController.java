@@ -1,18 +1,13 @@
 package unsw.dungeon.controller;
 
-import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.image.Image;
-import java.io.File;
-import javafx.scene.input.MouseEvent;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+
+import java.io.File;
 
 public class MenuController {
     

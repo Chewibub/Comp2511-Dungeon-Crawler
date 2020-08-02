@@ -3,7 +3,7 @@ package unsw.dungeon.goal;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.entity.Entity;
 
-public class ExitGoal implements Goal {
+public class ExitGoal extends ConcreteGoal {
     private Dungeon dungeon;
 
     public ExitGoal(Dungeon dungeon) {

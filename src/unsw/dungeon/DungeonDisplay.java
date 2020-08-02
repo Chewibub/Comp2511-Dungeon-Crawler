@@ -1,6 +1,7 @@
 package unsw.dungeon;
 
-import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import unsw.dungeon.entity.Enemy;
 import unsw.dungeon.entity.Entity;
 import unsw.dungeon.entity.Player;
@@ -12,11 +13,22 @@ import java.util.List;
 public class DungeonDisplay implements DungeonObserver {
     Dungeon dungeon;
     Player player;
+    private final Alert alert = new Alert(Alert.AlertType.NONE);
 
     public DungeonDisplay(Dungeon dungeon, Player player) {
         this.dungeon = dungeon;
         this.player = player;
         this.player.addObserver(this);
+        alert.getButtonTypes().setAll(new ButtonType("back"));
+        alert.setTitle("Wow");
+        alert.setContentText("You have completed level " + DungeonApplication.currentLevel());
+        alert.setOnHidden(event -> {
+            LevelSelectScreen levelSelect = new LevelSelectScreen();
+            DungeonApplication.nextLevel();
+            levelSelect.activate();
+        });
+        alert.setHeaderText("You win!");
+
     }
 
     @Override
@@ -46,7 +58,7 @@ public class DungeonDisplay implements DungeonObserver {
         }
         dungeon.getEntitesByType("Switch").forEach(s -> s.update());
         if (dungeon.getGoal() != null && dungeon.getGoal().completed()) {
-            System.out.print("You Won");
+            alert.showAndWait();
         }
 //        List<GoalOld> goals = dungeon.getGoals();
 //        String conditional = "ONE";

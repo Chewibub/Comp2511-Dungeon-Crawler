@@ -47,20 +47,25 @@ public class EquipmentsTest {
 
 
         int enemyCount = TestUtil.countEnemy(dungeon);
-        
         // get the sword
         player.moveLeft();
         assertEquals(5, player.getSwordCharges());
 
-        TestUtil.moveLeft(player, 2);
+        TestUtil.moveLeft(player, 3);
         TestUtil.moveUp(player, 2);
+        TestUtil.moveLeft(player, 5);
         TestUtil.moveRight(player, 4);
-    
-        assertEquals(0, player.getSwordCharges());
-        assertEquals(enemyCount - 5, TestUtil.countEnemy(dungeon));
 
+        assertEquals(3, player.getSwordCharges());
+        assertEquals(enemyCount - 2, TestUtil.countEnemy(dungeon));
+
+        TestUtil.moveRight(player, 10);
         player.moveUp();
-        assertEquals(enemyCount - 5, TestUtil.countEnemy(dungeon));
+        TestUtil.moveLeft(player, 10);
+
+        assertEquals(0, player.getSwordCharges());
+        assertEquals(enemyCount- 5, TestUtil.countEnemy(dungeon));
+        enemy1.smash();
 
         assertTrue(player.failed());
     }
@@ -105,15 +110,22 @@ public class EquipmentsTest {
         player.moveLeft();
         assertTrue(player.getInvincibility());
 
-        TestUtil.moveLeft(player, 2);
+        TestUtil.moveLeft(player, 3);
         TestUtil.moveUp(player, 2);
-        TestUtil.moveRight(player, 4);
-        assertEquals(enemyCount - 5, TestUtil.countEnemy(dungeon));
-        
-        TestUtil.moveUp(player, 1);
         TestUtil.moveLeft(player, 5);
-        
-        assertEquals(enemyCount - 10, TestUtil.countEnemy(dungeon));
+        TestUtil.moveRight(player, 4);
+
+        assertEquals(enemyCount - 2, TestUtil.countEnemy(dungeon));
+
+        TestUtil.moveRight(player, 10);
+        player.moveUp();
+        TestUtil.moveLeft(player, 10);
+
+        assertEquals(enemyCount- 5, TestUtil.countEnemy(dungeon));
+        enemy1.smash();
+
         assertFalse(player.failed());
+        
+        
     }
 }

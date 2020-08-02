@@ -34,7 +34,7 @@ public class ExitTest {
 
         GoalOld goal  = new GoalOld("exit", "ONE");
         
-        // dungeon.addGoal(goal);
+//        dungeon.addGoal(goal);
         
         // check goal
         assertFalse(goal.checkCompleted());

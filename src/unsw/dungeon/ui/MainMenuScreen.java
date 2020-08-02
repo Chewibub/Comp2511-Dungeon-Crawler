@@ -1,10 +1,11 @@
 package unsw.dungeon.ui;
-import unsw.dungeon.DungeonApplication;
-import unsw.dungeon.controller.MainMenuController;
 import javafx.fxml.FXMLLoader;
-import java.io.IOException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import unsw.dungeon.DungeonApplication;
+import unsw.dungeon.controller.MainMenuController;
+
+import java.io.IOException;
 
 public class MainMenuScreen {
     private Scene scene;
