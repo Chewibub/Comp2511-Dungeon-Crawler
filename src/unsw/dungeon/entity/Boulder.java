@@ -1,8 +1,6 @@
 package unsw.dungeon.entity;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.entity.Entity;
-import unsw.dungeon.entity.Player;
 
 import java.util.List;
 

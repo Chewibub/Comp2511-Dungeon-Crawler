@@ -7,7 +7,7 @@ import unsw.dungeon.ui.StoreScreen;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.application.Platform;
-import java.io.IOException;
+
 public class MainMenuController extends MenuController {
 
     @FXML
@@ -28,7 +28,7 @@ public class MainMenuController extends MenuController {
     }
     
     @FXML
-    private void handlePlay(MouseEvent event) throws IOException {
+    private void handlePlay(MouseEvent event) {
         LevelSelectScreen levelSelect = new LevelSelectScreen();
         levelSelect.activate();
     }

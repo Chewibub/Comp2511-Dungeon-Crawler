@@ -82,8 +82,6 @@ public class DungeonController {
             player.moveRight();
             break;
         case ESCAPE:
-            PopUp pop = new PopUp();
-            pop.popText("Test", "Blue", "Small");
             break;
         default:
             break;

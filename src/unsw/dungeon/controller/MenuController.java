@@ -1,8 +1,6 @@
 package unsw.dungeon.controller;
 
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Background;

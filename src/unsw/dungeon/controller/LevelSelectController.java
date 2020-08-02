@@ -3,8 +3,6 @@ package unsw.dungeon.controller;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
-import java.io.IOException;
-
 import javafx.fxml.FXML;
 
 import javafx.scene.input.MouseEvent;
@@ -60,7 +58,7 @@ public class LevelSelectController extends MenuController {
     }
     
     @FXML
-    private void handleBack(MouseEvent event) throws IOException {
+    private void handleBack(MouseEvent event) {
         MainMenuScreen mainMenu = new MainMenuScreen();
         mainMenu.activate();
     }

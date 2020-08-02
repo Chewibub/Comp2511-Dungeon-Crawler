@@ -4,14 +4,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-
 import javafx.fxml.FXML;
 
 import javafx.scene.input.MouseEvent;
 import unsw.dungeon.DungeonApplication;
 import unsw.dungeon.entity.Player;
-import unsw.dungeon.ui.DungeonScreen;
 import unsw.dungeon.ui.MainMenuScreen;
 
 public class StoreController extends MenuController {
@@ -32,7 +29,7 @@ public class StoreController extends MenuController {
     private Text errorText;
     
     @FXML
-    private void handleBack(MouseEvent event) throws IOException {
+    private void handleBack(MouseEvent event) {
         MainMenuScreen mainMenu = new MainMenuScreen();
         mainMenu.activate();
     }

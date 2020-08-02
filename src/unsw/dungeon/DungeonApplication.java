@@ -1,12 +1,9 @@
 package unsw.dungeon;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import unsw.dungeon.controller.MainMenuController;
+import unsw.dungeon.ui.MainMenuScreen;
 
 import java.io.IOException;
 
@@ -26,20 +23,11 @@ public class DungeonApplication extends Application {
         DungeonApplication.dungeons = dunBuff;
         DungeonApplication.gold = 5;
 
-        primaryStage.setTitle("C-Dungeons");
+        primaryStage.setTitle("C-Dungeons");    
         
-        MainMenuController controller = new MainMenuController();
-    
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/MainMenu.fxml"));
-        loader.setController(controller);
-        Parent root = loader.load();
-        
-        Scene scene = new Scene(root);
-        root.requestFocus();
-        primaryStage.setScene(scene);
+        MainMenuScreen mainMenu = new MainMenuScreen();
+        mainMenu.activate();
         primaryStage.show();
-        
     } 
     
     public static Stage getPrimaryStage() {

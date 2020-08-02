@@ -1,6 +1,5 @@
 package unsw.dungeon;
 
-import javafx.application.Platform;
 import unsw.dungeon.entity.Enemy;
 import unsw.dungeon.entity.Entity;
 import unsw.dungeon.entity.Player;
