@@ -15,7 +15,6 @@ public class DungeonApplication extends Application {
     private static boolean[] levelStatus;
     private static int gold;
     private static String[] dungeons;
-    private static int currentLevel = 0;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -56,17 +55,6 @@ public class DungeonApplication extends Application {
 
     public static void setLevelStatus(int index, boolean status) {
         DungeonApplication.levelStatus[index] = status;
-    }
-
-    public static void nextLevel() {
-        if (currentLevel < levelStatus.length) {
-            currentLevel++;
-            levelStatus[currentLevel] = true;
-        }
-    }
-
-    public static int currentLevel() {
-        return currentLevel + 1;
     }
 
     public static String getDungeon(int index) {
