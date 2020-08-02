@@ -55,22 +55,18 @@ public class DungeonController {
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
 
-        GridPane.setRowIndex(goalButton, 0);
+        // GridPane.setRowIndex(goalButton, 0);
 
-        goalButton.setStyle("-fx-background-color: rgba(255,255,255,0.3);-fx-text-fill: white");
-        goalButton.setOnMouseClicked(event -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Goal");
-            alert.setHeaderText("Goal: "+dungeon.getGoal().toString());
-            alert.setContentText("You have achieved: "+ dungeon.getGoal().achieved());
-            alert.showAndWait();
+        // goalButton.setStyle("-fx-background-color: rgba(255,255,255,0.3);-fx-text-fill: white");
+        // goalButton.setOnMouseClicked(event -> {
+            
 
             
-        });
+        // });
 
-        GridPane.setColumnIndex(goalButton, dungeon.getWidth() - 2);
-        GridPane.setColumnSpan(goalButton,2);
-        squares.getChildren().add(goalButton);
+        // GridPane.setColumnIndex(goalButton, dungeon.getWidth() - 2);
+        // GridPane.setColumnSpan(goalButton,2);
+        // squares.getChildren().add(goalButton);
 
 
     }
@@ -104,8 +100,11 @@ public class DungeonController {
             player.moveRight();
             break;
         case ESCAPE:
-            PopUp pop = new PopUp();
-            pop.popText("Test", "Blue", "Small");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Goal");
+            alert.setHeaderText("Goal: " + dungeon.getGoal().toString());
+            alert.setContentText("You have achieved: " + dungeon.getGoal().achieved());
+            alert.showAndWait();
             break;
         default:
             break;
