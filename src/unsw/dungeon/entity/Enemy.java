@@ -29,7 +29,6 @@ public class Enemy extends Entity {
         this.dungeon = dungeon;
         this.direction = 1;
         this.timeline = new Timeline();
-        initialiseTimeLine();
     }
 
     public void triggerMovement() {
@@ -76,10 +75,9 @@ public class Enemy extends Entity {
     }
 
     public void initialiseTimeLine() {
-        double refresh = 1/2;
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(refresh), e -> {
-            this.triggerMovement();
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+            triggerMovement();
         }));
         timeline.play();
     }
