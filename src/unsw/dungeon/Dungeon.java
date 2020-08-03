@@ -104,8 +104,12 @@ public class Dungeon {
         for (Entity temp : this.entities) {
             if (temp != null) {
                 if (temp.getX() == x && temp.getY() == y) {
-                    if (temp.checkSolid()) {
+                    if (temp.getType().equals("Boulder") && player.getType().equals("Enemy")) {
                         return false;
+                    } else {
+                        if (temp.checkSolid()) {
+                            return false;
+                        }
                     }
                 }
             }
