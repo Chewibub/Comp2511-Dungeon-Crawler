@@ -185,6 +185,11 @@ public abstract class DungeonLoader {
                 onLoad(portal);
                 entity = portal;
                 break;
+            case "gnome":
+                Gnome gnome = new Gnome(dungeon, x, y);
+                onLoad(gnome);
+                entity = gnome;
+                break;
         }
 
         dungeon.addEntity(entity);
@@ -214,5 +219,7 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Portal portal);
 
     public abstract void onLoad(Key key);
+
+    public abstract void onLoad(Gnome gnome);
 
 }

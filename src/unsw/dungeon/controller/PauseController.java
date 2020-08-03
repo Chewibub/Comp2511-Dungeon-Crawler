@@ -54,17 +54,17 @@ public class PauseController {
         goalExit.setFont(new Font(20));
         goalExit.setTextAlignment(TextAlignment.CENTER);
         for (String temp : goalStrings) {
-            if (temp.equals("AND:")) {
+            if (temp.equals("and")) {
                 goalType.setText("Complete ALL of the below: \n");
-            } else if (temp.equals("OR:")) {
+            } else if (temp.equals("or")) {
                 goalType.setText("Complete ONE of the below: \n");
-            } else if (temp.equals("boulders,")) {
+            } else if (temp.equals("boulders")) {
                 goalBoulders.setText("Push a boulder onto all pressure plates\n");
-            } else if (temp.equals("treasure,")) {
+            } else if (temp.equals("treasure")) {
                 goalTreasure.setText("Collect all the treasure\n");
-            } else if (temp.equals("enemies,")) {
+            } else if (temp.equals("enemies")) {
                 goalEnemies.setText("Kill all the enemies\n");
-            } else if (temp.equals("exit,")) {
+            } else if (temp.equals("exit")) {
                 goalExit.setText("Reach the exit\n");
             }
         }
