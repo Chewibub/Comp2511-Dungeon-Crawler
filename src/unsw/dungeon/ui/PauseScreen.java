@@ -11,6 +11,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Modality;
+import javafx.scene.text.Text; 
+import javafx.scene.text.TextAlignment; 
+import javafx.scene.text.TextFlow; 
+
 
 public class PauseScreen {
     private Scene scene;
@@ -49,7 +53,7 @@ public class PauseScreen {
         popUpStage.setTitle("pause");
         popUpStage.setScene(scene);
         double centerXPosition = getStage().getX() + getStage().getWidth()/2;
-        double centerYPosition = getStage().getX() + getStage().getWidth()/2;
+        double centerYPosition = getStage().getY() + getStage().getWidth()/2;
         popUpStage.setOnShowing(e -> popUpStage.hide());
         popUpStage.setOnShown(e -> {
             popUpStage.setX(centerXPosition - popUpStage.getWidth()/2);
@@ -63,4 +67,6 @@ public class PauseScreen {
     public void hidePauseScreen() {
         this.stage.hide();
     }
+
+
 }
