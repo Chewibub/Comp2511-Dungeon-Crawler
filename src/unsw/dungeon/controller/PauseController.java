@@ -67,7 +67,6 @@ public class PauseController {
             } else if (temp.equals("exit,")) {
                 goalExit.setText("Reach the exit\n");
             }
-            System.out.println(temp);
         }
         goalsText.getChildren().addAll(text1, goalType, goalEnemies, goalTreasure, goalBoulders, goalExit);
         
