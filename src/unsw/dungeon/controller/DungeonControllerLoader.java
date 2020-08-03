@@ -37,6 +37,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image doorImage;
     private Image portalImage;
     private Image keyImage;
+    private Image gnomeImage;
 
     public DungeonControllerLoader(String filename)
             throws FileNotFoundException {
@@ -54,6 +55,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         doorImage = new Image((new File("images/closed_door.png")).toURI().toString());
         portalImage = new Image((new File("images/portal.png")).toURI().toString());
         keyImage = new Image((new File("images/key.png")).toURI().toString());
+        gnomeImage = new Image((new File("images/gnome.png")).toURI().toString());
 
     }
 
@@ -134,6 +136,14 @@ public class DungeonControllerLoader extends DungeonLoader {
     public void onLoad(Key key) {
         ImageView view = new ImageView(keyImage);
         addEntity(key, view);
+    }
+
+    @Override
+    public void onLoad(Gnome gnome) {
+        ImageView view = new ImageView(gnomeImage);
+        gnome.setOriginalImage(view);
+        gnome.initialiseTimeLine();
+        addEntity(gnome, view);
     }
 
     private void addEntity(Entity entity, ImageView view) {

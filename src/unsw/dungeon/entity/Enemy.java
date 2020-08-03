@@ -32,6 +32,7 @@ public class Enemy extends Entity {
         this.timeline = new Timeline();
     }
 
+    @Override
     public void triggerMovement() {
         if (dungeon.getPlayer().getX()==getX()&&dungeon.getPlayer().getY() == getY()) {
             smash();
@@ -94,4 +95,5 @@ public class Enemy extends Entity {
             timeline.pause();
         }
     }
+
 }

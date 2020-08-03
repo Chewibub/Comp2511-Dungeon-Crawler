@@ -142,4 +142,8 @@ public class Entity implements EntitySubject{
     
     public void pause(boolean status) {
     }
+
+    public void triggerMovement() {
+    }
+
 }
