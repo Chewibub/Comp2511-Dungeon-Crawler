@@ -1,17 +1,16 @@
 package unsw.dungeon.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.entity.Player;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Alert;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -82,6 +81,11 @@ public class DungeonController {
             player.moveRight();
             break;
         case ESCAPE:
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Goal");
+            alert.setHeaderText("Goal: " + dungeon.getGoal().toString());
+            alert.setContentText("You have achieved: " + dungeon.getGoal().achieved());
+            alert.showAndWait();
             break;
         default:
             break;
