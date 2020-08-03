@@ -8,7 +8,6 @@ import unsw.dungeon.DungeonApplication;
 import unsw.dungeon.ui.DungeonScreen;
 import unsw.dungeon.ui.MainMenuScreen;
 
-import java.io.IOException;
 
 public class LevelSelectController extends MenuController {
 

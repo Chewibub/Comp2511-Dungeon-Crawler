@@ -23,22 +23,13 @@ public class DungeonApplication extends Application {
         DungeonApplication.dungeons = dunBuff;
         DungeonApplication.gold = 5;
 
-        primaryStage.setTitle("C-Dungeons");
-
-        MainMenuController controller = new MainMenuController();
-
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/MainMenu.fxml"));
-        loader.setController(controller);
-        Parent root = loader.load();
-
-        Scene scene = new Scene(root);
-        root.requestFocus();
-        primaryStage.setScene(scene);
+        primaryStage.setTitle("C-Dungeons");    
+        
+        MainMenuScreen mainMenu = new MainMenuScreen();
+        mainMenu.activate();
         primaryStage.show();
-
-    }
-
+    } 
+    
     public static Stage getPrimaryStage() {
         return primaryStage;
     }

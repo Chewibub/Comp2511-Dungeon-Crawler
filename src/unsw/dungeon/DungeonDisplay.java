@@ -1,10 +1,7 @@
 package unsw.dungeon;
 
-<<<<<<< HEAD
-=======
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
->>>>>>> newUI-mzip
 import unsw.dungeon.entity.Enemy;
 import unsw.dungeon.entity.Entity;
 import unsw.dungeon.entity.Player;

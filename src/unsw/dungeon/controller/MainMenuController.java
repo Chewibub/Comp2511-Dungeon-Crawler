@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import unsw.dungeon.ui.LevelSelectScreen;
+import unsw.dungeon.ui.StoreScreen;
 
-import java.io.IOException;
 public class MainMenuController extends MenuController {
 
     @FXML

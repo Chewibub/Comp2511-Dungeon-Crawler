@@ -1,7 +1,6 @@
 package unsw.dungeon.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,7 +8,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.entity.Player;
-import unsw.dungeon.ui.PopUp;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,7 +29,6 @@ public class DungeonController {
 
     private Dungeon dungeon;
 
-    private Button goalButton=new Button("goal");
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
@@ -54,21 +51,6 @@ public class DungeonController {
 
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
-
-        // GridPane.setRowIndex(goalButton, 0);
-
-        // goalButton.setStyle("-fx-background-color: rgba(255,255,255,0.3);-fx-text-fill: white");
-        // goalButton.setOnMouseClicked(event -> {
-            
-
-            
-        // });
-
-        // GridPane.setColumnIndex(goalButton, dungeon.getWidth() - 2);
-        // GridPane.setColumnSpan(goalButton,2);
-        // squares.getChildren().add(goalButton);
-
-
     }
 
     public void removeImage(ImageView original) {

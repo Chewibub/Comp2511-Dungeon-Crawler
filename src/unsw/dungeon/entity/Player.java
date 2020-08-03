@@ -19,7 +19,6 @@ public class Player extends Entity {
     private Key key;
 
     private static boolean startingSword;
-    private static boolean startingLives;
 
     private int keyInventory = 0;
 
