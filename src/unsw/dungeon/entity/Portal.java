@@ -27,7 +27,7 @@ public class Portal extends Entity {
         for (Entity e : dungeon.getEntities()) {
             if (e.getType() == "Portal") {
                 Portal tempPortal = (Portal) e;
-                if (tempPortal.getID() == id && (tempPortal.getX() != this.getX() && tempPortal.getY() != this.getY())) {
+                if (tempPortal.getID() == id && (tempPortal.getX() != this.getX() || tempPortal.getY() != this.getY())) {
                     tempPortal.deActivate();
                     System.out.println("You teleported from" + Integer.toString(this.getX()));
                     dungeon.getPlayer().setX(tempPortal.getX());
