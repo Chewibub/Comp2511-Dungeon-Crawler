@@ -2,7 +2,7 @@ package unsw.dungeon.goal;
 
 import unsw.dungeon.Dungeon;
 
-public class EnemiesGoal implements Goal {
+public class EnemiesGoal extends ConcreteGoal {
     private Dungeon dungeon;
 
     public EnemiesGoal(Dungeon dungeon) {
@@ -18,4 +18,5 @@ public class EnemiesGoal implements Goal {
     public String toString() {
         return "enemies";
     }
+
 }

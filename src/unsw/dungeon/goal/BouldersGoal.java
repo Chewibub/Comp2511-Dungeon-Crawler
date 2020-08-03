@@ -2,7 +2,7 @@ package unsw.dungeon.goal;
 
 import unsw.dungeon.Dungeon;
 
-public class BouldersGoal implements Goal {
+public class BouldersGoal extends ConcreteGoal {
     private Dungeon dungeon;
 
     public BouldersGoal(Dungeon dungeon) {

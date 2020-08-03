@@ -1,6 +1,7 @@
 package unsw.dungeon.goal;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class OrGoals extends ComplexGoal{
     public OrGoals() {
@@ -19,11 +20,12 @@ public class OrGoals extends ComplexGoal{
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("{ OR: ");
-        for (Goal subGoal : subGoals) {
-            builder.append(subGoal.toString()+", ");
-        }
+        StringBuilder builder = new StringBuilder("{ ");
+        builder.append(String.join(" or ", subGoals.stream().map(g -> g.toString()).collect(Collectors.toList())));
+
         builder.append(" }");
         return builder.toString();
     }
+
+
 }

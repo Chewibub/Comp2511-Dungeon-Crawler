@@ -1,5 +1,10 @@
 package unsw.dungeon;
 
+<<<<<<< HEAD
+=======
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+>>>>>>> newUI-mzip
 import unsw.dungeon.entity.Enemy;
 import unsw.dungeon.entity.Entity;
 import unsw.dungeon.entity.Player;
@@ -11,11 +16,22 @@ import java.util.List;
 public class DungeonDisplay implements DungeonObserver {
     Dungeon dungeon;
     Player player;
+    private final Alert alert = new Alert(Alert.AlertType.NONE);
 
     public DungeonDisplay(Dungeon dungeon, Player player) {
         this.dungeon = dungeon;
         this.player = player;
         this.player.addObserver(this);
+        alert.getButtonTypes().setAll(new ButtonType("back"));
+        alert.setTitle("Wow");
+        alert.setContentText("You have completed level " + dungeon.getDungeonIndex() + 1);
+        alert.setOnHidden(event -> {
+            LevelSelectScreen levelSelect = new LevelSelectScreen();
+            levelSelect.activate();
+        });
+        
+        alert.setHeaderText("You win!");
+
     }
 
     @Override
@@ -45,35 +61,9 @@ public class DungeonDisplay implements DungeonObserver {
         }
         dungeon.getEntitesByType("Switch").forEach(s -> s.update());
         if (dungeon.getGoal() != null && dungeon.getGoal().completed()) {
+            alert.showAndWait();
             DungeonApplication.setLevelStatus(dungeon.getDungeonIndex() + 1, true);
-            LevelSelectScreen levelSelect = new LevelSelectScreen();
-            levelSelect.activate();
         }
-//        List<GoalOld> goals = dungeon.getGoals();
-//        String conditional = "ONE";
-//        for (GoalOld temp : goals) {
-//            if (temp != null) {
-//                temp.updateGoal();
-//                conditional = temp.getCondition();
-//                if (temp.checkCompleted() == true && temp.getCondition().equals("ONE")) {
-//                    System.out.println("You won!!");
-//                    Platform.exit();
-//                    break;
-//                } else if (temp.checkCompleted() == true && temp.getCondition().equals("OR")) {
-//                    System.out.println("You won!!");
-//                    Platform.exit();
-//                    break;
-//                } else if (temp.getCondition().equals("AND")) {
-//                    if (temp.checkCompleted() == false) {
-//                        return;
-//                    }
-//                }
-//            }
-//        }
-//        if (conditional.equals("AND")) {
-//            System.out.println("You won!!");
-//            Platform.exit();
-//        }
     }
 
     public Entity getEntity() {

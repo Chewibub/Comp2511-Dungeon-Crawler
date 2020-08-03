@@ -15,7 +15,7 @@ public class DungeonApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        
+
         DungeonApplication.primaryStage = primaryStage;
         DungeonApplication.levelStatus = new boolean[6];
         DungeonApplication.levelStatus[0] = true;
@@ -23,13 +23,22 @@ public class DungeonApplication extends Application {
         DungeonApplication.dungeons = dunBuff;
         DungeonApplication.gold = 5;
 
-        primaryStage.setTitle("C-Dungeons");    
-        
-        MainMenuScreen mainMenu = new MainMenuScreen();
-        mainMenu.activate();
+        primaryStage.setTitle("C-Dungeons");
+
+        MainMenuController controller = new MainMenuController();
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/MainMenu.fxml"));
+        loader.setController(controller);
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        root.requestFocus();
+        primaryStage.setScene(scene);
         primaryStage.show();
-    } 
-    
+
+    }
+
     public static Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -50,13 +59,12 @@ public class DungeonApplication extends Application {
         DungeonApplication.levelStatus[index] = status;
     }
 
-    
     public static String getDungeon(int index) {
         return dungeons[index];
     }
-    
+
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

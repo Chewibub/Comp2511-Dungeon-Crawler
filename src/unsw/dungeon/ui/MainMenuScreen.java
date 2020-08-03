@@ -1,4 +1,5 @@
 package unsw.dungeon.ui;
+<<<<<<< HEAD
 import unsw.dungeon.DungeonApplication;
 import unsw.dungeon.controller.MainMenuController;
 import javafx.application.Platform;
@@ -8,6 +9,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+=======
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import unsw.dungeon.DungeonApplication;
+import unsw.dungeon.controller.MainMenuController;
+
+import java.io.IOException;
+>>>>>>> newUI-mzip
 
 public class MainMenuScreen {
     private Scene scene;
