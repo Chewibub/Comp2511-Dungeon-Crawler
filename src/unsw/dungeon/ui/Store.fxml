@@ -18,7 +18,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="buySwordButton" contentDisplay="CENTER" layoutX="200.0" layoutY="49.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" onMouseClicked="#handleSwordPurchase" onMouseEntered="#buttonHover" onMouseExited="#buttonLeave" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #add8e6;" text="Start with Sword (1)" textAlignment="CENTER" textOverrun="CLIP">
+      <Button fx:id="buySwordButton" contentDisplay="CENTER" layoutX="200.0" layoutY="49.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" onMouseClicked="#handleSwordPurchase" onMouseEntered="#buttonHover" onMouseExited="#buttonLeave" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #add8e6;" text="Start with Sword (2)" textAlignment="CENTER" textOverrun="CLIP">
          <font>
             <Font size="16.0" />
          </font>
