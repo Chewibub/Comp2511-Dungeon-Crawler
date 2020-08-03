@@ -23,7 +23,7 @@
                   <Font size="27.0" />
                </font>
             </Button>
-            <TextFlow fx:id="goalsText" prefHeight="136.0" prefWidth="293.0" />
+            <TextFlow fx:id="goalsText" prefHeight="136.0" prefWidth="293.0" textAlignment="CENTER" />
          </children>
       </VBox>
    </children>
