@@ -19,7 +19,7 @@ public class DungeonApplication extends Application {
         DungeonApplication.primaryStage = primaryStage;
         DungeonApplication.levelStatus = new boolean[6];
         DungeonApplication.levelStatus[0] = true;
-        String[] dunBuff = {"advanced.json", "advanced.json", "advanced.json", "advanced.json", "advanced.json", "advanced.json"};
+        String[] dunBuff = {"level1.json", "level2.json", "level3.json", "arean.json", "advanced.json", "advanced.json"};
         DungeonApplication.dungeons = dunBuff;
         DungeonApplication.gold = 5;
 
