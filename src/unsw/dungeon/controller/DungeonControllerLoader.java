@@ -75,6 +75,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     public void onLoad(Enemy enemy) {
         ImageView view = new ImageView(enemyImage);
         enemy.setOriginalImage(view);
+        enemy.initialiseTimeLine();
         addEntity(enemy, view);
     }
     

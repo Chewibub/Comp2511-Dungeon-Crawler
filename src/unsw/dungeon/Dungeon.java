@@ -166,4 +166,12 @@ public class Dungeon {
         return dungeonIndex;
     }
 
+    public void pauseAll(boolean status) {
+	    for (Entity temp : entities) {
+            if (temp.getType().equals("Enemy")) {
+                temp.pause(status);
+            }
+        }
+    }
+
 }

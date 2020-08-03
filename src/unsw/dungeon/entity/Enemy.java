@@ -79,8 +79,17 @@ public class Enemy extends Entity {
         double refresh = 1/2;
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(refresh), e -> {
-            triggerMovement();
+            this.triggerMovement();
         }));
         timeline.play();
+    }
+
+    @Override
+    public void pause(boolean status) {
+        if (status) {
+            timeline.play();
+        } else {
+            timeline.pause();
+        }
     }
 }

@@ -8,10 +8,13 @@ import javafx.scene.layout.GridPane;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.entity.Player;
 import unsw.dungeon.ui.PopUp;
+import javafx.scene.input.KeyCode;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import unsw.dungeon.ui.PauseScreen;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -28,12 +31,16 @@ public class DungeonController {
     private Player player;
 
     private Dungeon dungeon;
+
+    private boolean pauseStatus = false;
+    private PauseScreen pauseScreen;
     
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
         dungeon.setController(this);
+        setPauseScreen();
     }
 
     @FXML
@@ -68,27 +75,52 @@ public class DungeonController {
 
     @FXML
     public void handleKeyPress(KeyEvent event) {
-        switch (event.getCode()) {
-        case UP:
-            player.moveUp();
-            break;
-        case DOWN:
-            player.moveDown();
-            break;
-        case LEFT:
-            player.moveLeft();
-            break;
-        case RIGHT:
-            player.moveRight();
-            break;
-        case ESCAPE:
-            PopUp pop = new PopUp();
-            pop.popText("Test", "Blue", "Small");
-            break;
-        default:
-            break;
+        if (event.getCode() == KeyCode.ESCAPE) {
+            pauseGame();
+        } else  {
+            switch (event.getCode()) {
+                case UP:
+                    player.moveUp();
+                    break;
+                case DOWN:
+                    player.moveDown();
+                    break;
+                case LEFT:
+                    player.moveLeft();
+                    break;
+                case RIGHT:
+                    player.moveRight();
+                    break;
+                // case ESCAPE:
+                //     PopUp pop = new PopUp();
+                //     pop.popText("Test", "Blue", "Small");
+                //     break;
+                default:
+                    break;
+                }
         }
+
+    }
+
+    public void pauseGame() {
+        togglePause();
+        pauseScreen.start();
+    }
+
+    public void togglePause() {
+        dungeon.pauseAll(pauseStatus);
+        this.pauseStatus = !this.pauseStatus;
+    }
+
+    public void setPauseScreen() {
+        PauseScreen pScreen = new PauseScreen(this);
+        this.pauseScreen = pScreen;
+    }
+
+    public Dungeon getDungeon() {
+        return this.dungeon;
     }
 
 }
+
 

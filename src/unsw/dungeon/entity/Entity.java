@@ -140,4 +140,6 @@ public class Entity implements EntitySubject{
         return 0;
     }
     
+    public void pause(boolean status) {
+    }
 }
