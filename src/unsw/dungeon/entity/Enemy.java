@@ -1,6 +1,9 @@
 package unsw.dungeon.entity;
 
+import javafx.animation.Timeline;
 import unsw.dungeon.Dungeon;
+import javafx.animation.KeyFrame;
+import javafx.util.Duration;
 
 /**
  * The Enemy entity
@@ -12,6 +15,7 @@ public class Enemy extends Entity {
     private Dungeon dungeon;
     private int direction;
     private boolean movable = true;
+    protected Timeline timeline;
 
     /**
      * Create a enemy positioned in square (x,y)
@@ -24,6 +28,7 @@ public class Enemy extends Entity {
         super(x, y, "Enemy");
         this.dungeon = dungeon;
         this.direction = 1;
+        this.timeline = new Timeline();
     }
 
     public void triggerMovement() {
@@ -67,5 +72,22 @@ public class Enemy extends Entity {
 
     public void setMovable(boolean movable) {
         this.movable = movable;
+    }
+
+    public void initialiseTimeLine() {
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+            triggerMovement();
+        }));
+        timeline.play();
+    }
+
+    @Override
+    public void pause(boolean status) {
+        if (status) {
+            timeline.play();
+        } else {
+            timeline.pause();
+        }
     }
 }

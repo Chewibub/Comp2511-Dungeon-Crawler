@@ -36,10 +36,10 @@ public class DungeonDisplay implements DungeonObserver {
         List<Entity> entities = dungeon.getEntities();
         for (Entity temp : entities) {
             if (temp != null) {
-                if (temp.getType().equals("Enemy")) {
-                    Enemy enemy = (Enemy) temp;
-                    enemy.triggerMovement();
-                }
+                // if (temp.getType().equals("Enemy")) {
+                //     Enemy enemy = (Enemy) temp;
+                //     enemy.triggerMovement();
+                // }
                 if (temp.getType().equals("Portal")) {
                     Portal portal = (Portal) temp;
                     portal.activate();

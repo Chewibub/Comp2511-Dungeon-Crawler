@@ -7,10 +7,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.entity.Player;
+import unsw.dungeon.ui.PopUp;
+import javafx.scene.input.KeyCode;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.Alert;
+
+import unsw.dungeon.ui.PauseScreen;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -28,12 +33,15 @@ public class DungeonController {
 
     private Dungeon dungeon;
 
-
+    private boolean pauseStatus = false;
+    private PauseScreen pauseScreen;
+    
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
         dungeon.setController(this);
+        setPauseScreen();
     }
 
     @FXML
@@ -81,16 +89,33 @@ public class DungeonController {
             player.moveRight();
             break;
         case ESCAPE:
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Goal");
-            alert.setHeaderText("Goal: " + dungeon.getGoal().toString());
-            alert.setContentText("You have achieved: " + dungeon.getGoal().achieved());
-            alert.showAndWait();
+            pauseGame();
             break;
         default:
             break;
         }
+
+    }
+
+    public void pauseGame() {
+        togglePause();
+        pauseScreen.start();
+    }
+
+    public void togglePause() {
+        dungeon.pauseAll(pauseStatus);
+        this.pauseStatus = !this.pauseStatus;
+    }
+
+    public void setPauseScreen() {
+        PauseScreen pScreen = new PauseScreen(this);
+        this.pauseScreen = pScreen;
+    }
+
+    public Dungeon getDungeon() {
+        return this.dungeon;
     }
 
 }
+
 
