@@ -16,6 +16,7 @@ public class Enemy extends Entity {
     private int direction;
     private boolean movable = true;
     protected Timeline timeline;
+    private int tickCheck = 0;
 
     /**
      * Create a enemy positioned in square (x,y)
@@ -36,9 +37,10 @@ public class Enemy extends Entity {
             smash();
             return;
         }
-        if (movable) {
+        if (movable && tickCheck % 10 == 0) {
             move(direction);
         }
+        tickCheck += 1;
     }
 
     public void move(int d) {
@@ -59,10 +61,12 @@ public class Enemy extends Entity {
             System.out.println("You killed an enemy!");
             System.out.println(this);
             dungeon.removeEntity(this);
+            timeline.stop();
         } else if (player.getSwordCharges() > 0) {
             System.out.println("You killed an enemy!");
             dungeon.removeEntity(this);
             player.setSwordCharges(player.getSwordCharges() - 1);
+            timeline.stop();
         } else {
             System.out.println("You have died!");
             dungeon.getPlayer().fail();
@@ -76,7 +80,7 @@ public class Enemy extends Entity {
 
     public void initialiseTimeLine() {
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), e -> {
             triggerMovement();
         }));
         timeline.play();
