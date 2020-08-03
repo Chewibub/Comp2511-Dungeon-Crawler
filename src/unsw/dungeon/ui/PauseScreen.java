@@ -15,6 +15,8 @@ import javafx.stage.Modality;
 public class PauseScreen {
     private Scene scene;
     DungeonController dungeonController;
+    protected Stage stage;
+
     public PauseScreen(DungeonController dungeonController) {
         
         try {
@@ -23,8 +25,9 @@ public class PauseScreen {
             loader.setController(controller);
             this.dungeonController = dungeonController;
             Parent root = loader.load();
-            Scene scene = new Scene(root);
+            this.scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
+            root.requestFocus();
         } catch (Exception e) {
             Platform.exit();
         }
@@ -53,7 +56,11 @@ public class PauseScreen {
             popUpStage.setY(centerYPosition - popUpStage.getHeight()/2);
             popUpStage.show();
         });
-
+        this.stage = popUpStage;
         popUpStage.show();
+    }
+
+    public void hidePauseScreen() {
+        this.stage.hide();
     }
 }

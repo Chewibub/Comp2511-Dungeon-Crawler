@@ -20,7 +20,7 @@ public class PauseController {
 
     @FXML
     void handleResumeButton(ActionEvent event) {
-        screen.getStage().hide();
+        screen.hidePauseScreen();
         screen.getDungeonController().togglePause();
     }
 
